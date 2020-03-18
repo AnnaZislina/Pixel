@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15702" systemVersion="19D76" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Photo" representedClassName="Photo" syncable="YES">
+        <attribute name="height" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="photographer" optional="YES" attributeType="String"/>
+        <attribute name="url" optional="YES" attributeType="String"/>
+        <attribute name="width" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="src" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Src" inverseName="photo" inverseEntity="Src"/>
+    </entity>
+    <entity name="Src" representedClassName="Src" syncable="YES">
+        <attribute name="large" optional="YES" attributeType="String"/>
+        <attribute name="large2x" optional="YES" attributeType="String"/>
+        <attribute name="original" optional="YES" attributeType="String"/>
+        <relationship name="photo" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Photo" inverseName="src" inverseEntity="Photo"/>
+    </entity>
+    <elements>
+        <element name="Photo" positionX="-49.5703125" positionY="53.0703125" width="128" height="118"/>
+        <element name="Src" positionX="144.14453125" positionY="17.71875" width="128" height="103"/>
+    </elements>
+</model>
