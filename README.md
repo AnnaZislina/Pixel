@@ -1,7 +1,7 @@
 # Pixel
 
-Pixel is a simple application that allow users to search, view and download high quality photos, photographed by professionals.
-The app is based on Pexels API.
+Pixel is a simple application that allows users to search, view and download high quality photos, photographed by professionals.
+The app is based on [Pexels](https://www.pexels.com) API.
 
 ## How to Use
 
