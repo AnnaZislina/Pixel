@@ -12,6 +12,6 @@ struct PexelsResponse: Codable {
     let page: Int
     let per_page: Int
     let total_results: Int
-   // let photos: [Photo]
-    let photos: [PhotoModel]
+    let photos: [Photo]
+    
 }

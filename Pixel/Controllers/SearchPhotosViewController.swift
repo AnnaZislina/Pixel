@@ -18,8 +18,8 @@ class SearchPhotosViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     var searchController: UISearchController!
-   // var photos: [Photo] = []
-    var photos: [PhotoModel] = []
+    var photos: [Photo] = []
+
     var selectedIndex = 0
     
     var currentSearchTask: URLSessionTask?
@@ -52,14 +52,6 @@ class SearchPhotosViewController: UIViewController {
             detailVC.photo = photos[selectedIndex]
         }
     }
-    
-//     func fetchPhotos() {
-//        let fetchRequest: NSFetchRequest<Photo> = Photo.fetchRequest()
-//        if let result =  try? dataController.viewContext.fetch(fetchRequest) {
-//            photos = result
-//            tableView.reloadData()
-//        }
-//    }
 }
 
 //MARK: Search Bar Delegate

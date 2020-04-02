@@ -8,10 +8,10 @@
 
 import Foundation
 
-class PhotoModel: Codable {
+class Photo: Codable {
     let height: Int
     let width: Int
     let photographer: String
     let url: String
-    let src: SrcModel
+    let src: Src
 }

@@ -18,7 +18,7 @@ class DetailedViewController: UIViewController {
     @IBOutlet weak var linkLabel: LinkLabel!
     
    // var photo: Photo!
-    var photo: PhotoModel!
+    var photo: Photo!
     var dataController: DataController!
     
     override func viewDidLoad() {

@@ -8,7 +8,7 @@
 
 import Foundation
 
-class SrcModel: Codable {
+class Src: Codable {
     let large2x: String
     let original: String
 }

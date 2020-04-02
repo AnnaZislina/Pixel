@@ -12,8 +12,8 @@ import CoreData
 class PexelsAPI {
     
     var dataController: DataController!
-    //var photos: [Photo] = []
-    var photos: [PhotoModel] = []
+
+    var photos: [Photo] = []
     
     static let API_KEY = "563492ad6f917000010000013220e319baaa4faca30cd9ee99abf6cf"
     
@@ -33,42 +33,6 @@ class PexelsAPI {
             return URL(string: stringValue)!
         }
     }
-
-//    func parseResponse(forData jsonData: Data) {
-//        do {
-//            guard let codableContext = CodingUserInfoKey.init(rawValue: "context") else { fatalError("Failed context")}
-//            let managedObjContext = dataController.viewContext
-//            let decoder = JSONDecoder()
-//            decoder.userInfo[codableContext] = managedObjContext
-//            _ = try decoder.decode([Photo].self, from: jsonData)
-//            try managedObjContext.save()
-//            self.fetchData()
-//        } catch {
-//            print("Error ->\(error.localizedDescription)")
-//        }
-//    }
-    
-//    func fetchData() {
-//        let managedObjContext = dataController.viewContext
-//        let fetchRequest = NSFetchRequest<Photo>(entityName: "Photo")
-//        do {
-//            self.photos = try managedObjContext.fetch(fetchRequest)
-//        } catch let error {
-//            print(error)
-//        }
-//    }
-    
-//    func get(url: URL) {
-//        var request = URLRequest(url: url)
-//        request.addValue(PexelsAPI.API_KEY, forHTTPHeaderField: "Authorization")
-//        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
-//            guard let jsonData = data else { return }
-//            DispatchQueue.main.async {
-//                self.parseResponse(forData: jsonData)
-//            }
-//        }
-//        task.resume()
-//    }
     
     //MARK: GET REQUEST
    class func getRequest<ResponseType: Decodable>(url: URL, responseType: ResponseType.Type, completion: @escaping (ResponseType?, Error?) -> Void) -> URLSessionTask {
@@ -97,7 +61,7 @@ class PexelsAPI {
     
 
     //MARK: SEARCH FUNC
-   class func search(query: String, completion: @escaping ([PhotoModel], Error?) -> Void) -> URLSessionTask {
+   class func search(query: String, completion: @escaping ([Photo], Error?) -> Void) -> URLSessionTask {
         
     let task = getRequest(url: Endpoints.search(query).url, responseType: PexelsResponse.self) { (response, error) in
             if let response = response {
