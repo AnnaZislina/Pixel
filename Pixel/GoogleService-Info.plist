@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>464565842782-c0cujsg6gcfk61m056jhj870nkvuv61v.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.464565842782-c0cujsg6gcfk61m056jhj870nkvuv61v</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAYdPHNRlsaxLh9NzYQVsbE6dzgzXaJnjs</string>
+	<key>GCM_SENDER_ID</key>
+	<string>464565842782</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>AZ.Pixel</string>
+	<key>PROJECT_ID</key>
+	<string>pixel-70a7c</string>
+	<key>STORAGE_BUCKET</key>
+	<string>pixel-70a7c.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:464565842782:ios:f865f3eef9e35f0b8b15cf</string>
+	<key>DATABASE_URL</key>
+	<string>https://pixel-70a7c.firebaseio.com</string>
+</dict>
+</plist>

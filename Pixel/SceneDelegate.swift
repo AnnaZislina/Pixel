@@ -11,18 +11,11 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-    let dataController = DataController(modelName: "Pixel")
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        
-        dataController.load()
+
         guard let _ = (scene as? UIWindowScene) else { return }
-        
-        let navVC = window?.rootViewController as! UINavigationController
-        let searchVC = navVC.topViewController as! SearchPhotosViewController
-        searchVC.dataController = dataController
-        window?.makeKeyAndVisible()
-        
+ 
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
