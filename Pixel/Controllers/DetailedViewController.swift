@@ -27,4 +27,8 @@ class DetailedViewController: UIViewController {
         detailedSizeLabel.text = "Original size: \(photo.width) x \(photo.height)"
         detailedImageView.downloadImage(urlString: photo.src.original)
     }
+    
+    @IBAction func saveButtonTapped(_ sender: Any) {
+    }
+    
 }
