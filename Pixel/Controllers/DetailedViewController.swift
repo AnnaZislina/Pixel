@@ -27,6 +27,7 @@ class DetailedViewController: UIViewController {
     }
     
     @objc func image(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
+       
         activityIndicator.stopAnimating()
         if let error = error {
             presentAlert(title: "Error", message: error.localizedDescription)
@@ -36,6 +37,7 @@ class DetailedViewController: UIViewController {
     }
     
     func presentAlert(title: String, message: String) {
+        
         activityIndicator.stopAnimating()
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default))
@@ -43,13 +45,14 @@ class DetailedViewController: UIViewController {
     }
     
     func savePhoto() {
+        
         guard let image = detailedImageView.image else { return }
         activityIndicator.startAnimating()
         UIImageWriteToSavedPhotosAlbum(image, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
     }
     
-
     @IBAction func saveButtonTapped(_ sender: Any) {
+        
         savePhoto()
     }
     

@@ -22,7 +22,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q4M-xr-U3H" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-535" y="119"/>
+            <point key="canvasLocation" x="-586" y="119"/>
         </scene>
         <!--Search Photos View Controller-->
         <scene sceneID="ing-oY-WUg">
@@ -32,8 +32,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <searchBar contentMode="redraw" placeholder="search" translatesAutoresizingMaskIntoConstraints="NO" id="zSz-mO-rDc">
+                                <rect key="frame" x="0.0" y="88" width="414" height="56"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="dLQ-I1-0f8" id="M7f-5W-pG7"/>
+                                </connections>
+                            </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="78a-CX-oP6">
-                                <rect key="frame" x="0.0" y="184" width="414" height="712"/>
+                                <rect key="frame" x="0.0" y="144" width="414" height="752"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="368" id="G0T-FG-kcO" customClass="TableViewCell" customModule="Pixel" customModuleProvider="target">
@@ -57,6 +64,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstItem="E7F-w6-sci" firstAttribute="centerX" secondItem="bUx-N5-rbt" secondAttribute="centerX" id="7eh-5R-5Zb"/>
                                                 <constraint firstItem="bUx-N5-rbt" firstAttribute="leading" secondItem="U5s-Eo-mef" secondAttribute="leading" constant="10" id="b68-QU-n2v"/>
@@ -78,24 +86,12 @@
                                     <outlet property="delegate" destination="dLQ-I1-0f8" id="Ef7-ry-kqf"/>
                                 </connections>
                             </tableView>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="IS4-Zv-bRW">
-                                <rect key="frame" x="197" y="68" width="20" height="20"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="color" red="0.43642151355743408" green="0.90563440322875977" blue="0.5656777024269104" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </activityIndicatorView>
-                            <searchBar contentMode="redraw" placeholder="search" translatesAutoresizingMaskIntoConstraints="NO" id="zSz-mO-rDc">
-                                <rect key="frame" x="0.0" y="128" width="414" height="56"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <outlet property="delegate" destination="dLQ-I1-0f8" id="M7f-5W-pG7"/>
-                                </connections>
-                            </searchBar>
                         </subviews>
                         <color key="backgroundColor" red="0.79834574460983276" green="0.94858461618423462" blue="0.8364453911781311" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="zSz-mO-rDc" firstAttribute="leading" secondItem="0s2-4f-e8G" secondAttribute="leading" id="1O7-bP-Ikh"/>
                             <constraint firstAttribute="bottom" secondItem="78a-CX-oP6" secondAttribute="bottom" id="2w8-n0-A57"/>
-                            <constraint firstItem="zSz-mO-rDc" firstAttribute="top" secondItem="0s2-4f-e8G" secondAttribute="top" constant="40" id="GYo-gB-ZSg"/>
+                            <constraint firstItem="zSz-mO-rDc" firstAttribute="top" secondItem="0s2-4f-e8G" secondAttribute="top" id="GYo-gB-ZSg"/>
                             <constraint firstItem="78a-CX-oP6" firstAttribute="top" secondItem="zSz-mO-rDc" secondAttribute="bottom" symbolic="YES" id="IoW-YX-71j"/>
                             <constraint firstItem="78a-CX-oP6" firstAttribute="leading" secondItem="0s2-4f-e8G" secondAttribute="leading" id="UlA-hL-7Hf"/>
                             <constraint firstItem="zSz-mO-rDc" firstAttribute="trailing" secondItem="0s2-4f-e8G" secondAttribute="trailing" id="fSP-dK-Yef"/>
@@ -106,7 +102,6 @@
                     </view>
                     <navigationItem key="navigationItem" id="fis-jW-cVY"/>
                     <connections>
-                        <outlet property="activityIndicator" destination="IS4-Zv-bRW" id="2QV-2t-kSl"/>
                         <outlet property="tableView" destination="78a-CX-oP6" id="Ikw-O7-woU"/>
                         <segue destination="AaC-2E-FbC" kind="show" identifier="showDetail" id="r6s-8P-G2O"/>
                     </connections>
@@ -207,7 +202,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rtr-lW-zle" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1060.8695652173915" y="118.52678571428571"/>
+            <point key="canvasLocation" x="1061" y="119"/>
         </scene>
     </scenes>
 </document>

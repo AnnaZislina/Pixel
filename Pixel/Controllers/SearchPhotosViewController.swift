@@ -13,28 +13,20 @@ class SearchPhotosViewController: UIViewController {
     
     let cellReuseIdentifier = "cell"
     
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
     
     var searchController: UISearchController!
     var photos: [Photo] = []
-
     var selectedIndex = 0
-    
     var currentSearchTask: URLSessionTask?
-   // var dataController: DataController!
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.dataSource = self
         tableView.delegate = self
-        
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 400
-        
-       // fetchPhotos()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -46,6 +38,7 @@ class SearchPhotosViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
         if segue.identifier == "showDetail" {
             let detailVC = segue.destination as! DetailedViewController
             detailVC.photo = photos[selectedIndex]
@@ -72,17 +65,18 @@ extension SearchPhotosViewController: UISearchBarDelegate {
 extension SearchPhotosViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
+        
         return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
         return photos.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell: TableViewCell = self.tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath) as! TableViewCell
-        
         let photo = photos[indexPath.row]
         
         cell.photographerLabel?.text = photo.photographer
