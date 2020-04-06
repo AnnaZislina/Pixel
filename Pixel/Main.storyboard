@@ -17,12 +17,12 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="dLQ-I1-0f8" kind="relationship" relationship="rootViewController" id="UXz-Y9-GCe"/>
+                        <segue destination="cZU-rD-Bbb" kind="relationship" relationship="rootViewController" id="tfA-1D-E7z"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q4M-xr-U3H" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-586" y="119"/>
+            <point key="canvasLocation" x="-1500" y="346"/>
         </scene>
         <!--Search Photos View Controller-->
         <scene sceneID="ing-oY-WUg">
@@ -110,6 +110,35 @@
             </objects>
             <point key="canvasLocation" x="247.82608695652175" y="118.52678571428571"/>
         </scene>
+        <!--My Album Table View Controller-->
+        <scene sceneID="vws-PN-dYo">
+            <objects>
+                <tableViewController id="Lph-ek-PvU" customClass="MyAlbumTableViewController" customModule="Pixel" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="EXX-zD-Kza">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="HmG-d5-w1B">
+                                <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="HmG-d5-w1B" id="i11-Vt-uWi">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Lph-ek-PvU" id="6FH-DE-zg3"/>
+                            <outlet property="delegate" destination="Lph-ek-PvU" id="2as-aK-xyo"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="iu2-Ks-5fD"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5aw-ES-PkT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="265" y="786"/>
+        </scene>
         <!--Detailed View Controller-->
         <scene sceneID="cCh-H0-gMe">
             <objects>
@@ -118,8 +147,26 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="d4s-Ht-vTZ">
+                                <rect key="frame" x="0.0" y="88" width="414" height="600"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="600" id="Iib-Uo-ztx"/>
+                                    <constraint firstAttribute="width" constant="414" id="uh2-cr-4h7"/>
+                                </constraints>
+                            </imageView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="Gjm-jc-XAx">
+                                <rect key="frame" x="199" y="378" width="20" height="20"/>
+                                <color key="color" red="0.43642151355743408" green="0.90563440322875977" blue="0.5656777024269104" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </activityIndicatorView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Size" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="STe-pa-Qe9">
+                                <rect key="frame" x="195.5" y="696" width="23.5" height="52"/>
+                                <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <size key="shadowOffset" width="0.0" height="0.0"/>
+                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Q2-iz-1Xq" customClass="RoundButton" customModule="Pixel" customModuleProvider="target">
-                                <rect key="frame" x="170" y="756" width="75" height="64"/>
+                                <rect key="frame" x="170" y="773" width="75" height="64"/>
                                 <color key="backgroundColor" red="0.79834574460983276" green="0.94858461618423462" blue="0.8364453911781311" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="75" id="49S-Lq-Fhk"/>
@@ -144,30 +191,6 @@
                                     <action selector="saveButtonTapped:" destination="AaC-2E-FbC" eventType="touchUpInside" id="0it-6c-Sh3"/>
                                 </connections>
                             </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="d4s-Ht-vTZ">
-                                <rect key="frame" x="0.0" y="88" width="414" height="600"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="600" id="Iib-Uo-ztx"/>
-                                    <constraint firstAttribute="width" constant="414" id="uh2-cr-4h7"/>
-                                </constraints>
-                            </imageView>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="Gjm-jc-XAx">
-                                <rect key="frame" x="199" y="378" width="20" height="20"/>
-                                <color key="color" red="0.43642151355743408" green="0.90563440322875977" blue="0.5656777024269104" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </activityIndicatorView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Photos provided by Pexel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f4V-18-reI" customClass="LinkLabel" customModule="Pixel" customModuleProvider="target">
-                                <rect key="frame" x="136" y="838" width="142" height="24"/>
-                                <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="15"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Size" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="STe-pa-Qe9">
-                                <rect key="frame" x="195.5" y="696" width="23.5" height="52"/>
-                                <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="15"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                                <size key="shadowOffset" width="0.0" height="0.0"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -176,18 +199,14 @@
                             <constraint firstItem="d4s-Ht-vTZ" firstAttribute="top" secondItem="scJ-75-V0C" secondAttribute="top" id="5WI-u5-qte"/>
                             <constraint firstItem="STe-pa-Qe9" firstAttribute="top" secondItem="Gjm-jc-XAx" secondAttribute="bottom" constant="298" id="7Zo-yN-bdm"/>
                             <constraint firstItem="scJ-75-V0C" firstAttribute="trailing" secondItem="6Q2-iz-1Xq" secondAttribute="trailing" constant="169" id="9z2-KW-NeV"/>
-                            <constraint firstItem="scJ-75-V0C" firstAttribute="bottom" secondItem="f4V-18-reI" secondAttribute="bottom" id="C2v-OG-mIK"/>
                             <constraint firstItem="scJ-75-V0C" firstAttribute="trailing" secondItem="Gjm-jc-XAx" secondAttribute="trailing" constant="195" id="CFL-wx-ga9"/>
                             <constraint firstItem="Gjm-jc-XAx" firstAttribute="top" secondItem="scJ-75-V0C" secondAttribute="top" constant="290" id="FUE-9H-JG7"/>
-                            <constraint firstItem="6Q2-iz-1Xq" firstAttribute="top" secondItem="STe-pa-Qe9" secondAttribute="bottom" constant="8" id="GsV-Oo-Jtk"/>
+                            <constraint firstItem="6Q2-iz-1Xq" firstAttribute="top" secondItem="STe-pa-Qe9" secondAttribute="bottom" constant="25" id="GsV-Oo-Jtk"/>
                             <constraint firstItem="6Q2-iz-1Xq" firstAttribute="leading" secondItem="scJ-75-V0C" secondAttribute="leading" constant="170" id="Q5R-hD-T4X"/>
                             <constraint firstItem="Gjm-jc-XAx" firstAttribute="leading" secondItem="scJ-75-V0C" secondAttribute="leading" constant="199" id="Wdx-T2-7BW"/>
-                            <constraint firstItem="scJ-75-V0C" firstAttribute="trailing" secondItem="f4V-18-reI" secondAttribute="trailing" constant="136" id="bQH-ng-csZ"/>
                             <constraint firstItem="d4s-Ht-vTZ" firstAttribute="trailing" secondItem="scJ-75-V0C" secondAttribute="trailing" id="d3X-4p-WaW"/>
                             <constraint firstItem="d4s-Ht-vTZ" firstAttribute="leading" secondItem="scJ-75-V0C" secondAttribute="leading" id="j0J-58-6xO"/>
-                            <constraint firstItem="f4V-18-reI" firstAttribute="leading" secondItem="scJ-75-V0C" secondAttribute="leading" constant="136" id="nGP-HQ-T42"/>
-                            <constraint firstItem="f4V-18-reI" firstAttribute="top" secondItem="6Q2-iz-1Xq" secondAttribute="bottom" constant="18" id="rZf-VA-ngY"/>
-                            <constraint firstItem="scJ-75-V0C" firstAttribute="bottom" secondItem="6Q2-iz-1Xq" secondAttribute="bottom" constant="42" id="y4e-Z6-GXX"/>
+                            <constraint firstItem="scJ-75-V0C" firstAttribute="bottom" secondItem="6Q2-iz-1Xq" secondAttribute="bottom" constant="25" id="y4e-Z6-GXX"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="scJ-75-V0C"/>
                     </view>
@@ -196,13 +215,116 @@
                         <outlet property="activityIndicator" destination="Gjm-jc-XAx" id="8jn-5z-txX"/>
                         <outlet property="detailedImageView" destination="d4s-Ht-vTZ" id="rot-dw-EMz"/>
                         <outlet property="detailedSizeLabel" destination="STe-pa-Qe9" id="W64-Ra-brv"/>
-                        <outlet property="linkLabel" destination="f4V-18-reI" id="8mq-Mf-g68"/>
                         <outlet property="saveImageButton" destination="6Q2-iz-1Xq" id="KfT-TL-AQh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rtr-lW-zle" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1061" y="119"/>
+        </scene>
+        <!--Welcome View Controller-->
+        <scene sceneID="3uX-8L-igD">
+            <objects>
+                <viewController id="cZU-rD-Bbb" customClass="WelcomeViewController" customModule="Pixel" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="OQ9-eb-uuv">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D9K-Ol-3n5" customClass="RoundButton" customModule="Pixel" customModuleProvider="target">
+                                <rect key="frame" x="112" y="529" width="190" height="100"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="20"/>
+                                <state key="normal" title="Discover Photos">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="titleShadowColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="50"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <segue destination="dLQ-I1-0f8" kind="show" id="9Jo-v8-gHx"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HyW-Df-mb7" customClass="RoundButton" customModule="Pixel" customModuleProvider="target">
+                                <rect key="frame" x="112" y="637" width="190" height="100"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="20"/>
+                                <state key="normal" title="To My Album">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="50"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <segue destination="Lph-ek-PvU" kind="show" id="1VR-e7-zcC"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PIXEL" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MOm-5q-TMK">
+                                <rect key="frame" x="148.5" y="235" width="117" height="72"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="72" id="QqK-NI-L4Y"/>
+                                    <constraint firstAttribute="width" constant="117" id="eY0-Rh-ljz"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="45"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Photos provided by Pexel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mki-UT-cRk" customClass="LinkLabel" customModule="Pixel" customModuleProvider="target">
+                                <rect key="frame" x="136" y="838" width="142" height="24"/>
+                                <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="url" value="https://www.pexels.com"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.79834574460983276" green="0.94858461618423462" blue="0.8364453911781311" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Mki-UT-cRk" firstAttribute="leading" secondItem="JtI-ke-pKq" secondAttribute="leading" constant="136" id="00e-zs-APL"/>
+                            <constraint firstItem="JtI-ke-pKq" firstAttribute="trailing" secondItem="Mki-UT-cRk" secondAttribute="trailing" constant="136" id="2B4-Sm-9up"/>
+                            <constraint firstItem="MOm-5q-TMK" firstAttribute="centerX" secondItem="JtI-ke-pKq" secondAttribute="centerX" id="50S-TE-bBI"/>
+                            <constraint firstItem="JtI-ke-pKq" firstAttribute="trailing" secondItem="D9K-Ol-3n5" secondAttribute="trailing" constant="112" id="Am9-Nw-d3A"/>
+                            <constraint firstItem="MOm-5q-TMK" firstAttribute="centerY" secondItem="JtI-ke-pKq" secondAttribute="centerY" constant="-204" id="Gvk-nc-44b"/>
+                            <constraint firstItem="D9K-Ol-3n5" firstAttribute="leading" secondItem="JtI-ke-pKq" secondAttribute="leading" constant="112" id="IeA-nr-S2l"/>
+                            <constraint firstItem="HyW-Df-mb7" firstAttribute="leading" secondItem="JtI-ke-pKq" secondAttribute="leading" constant="112" id="KHw-sh-8gO"/>
+                            <constraint firstItem="JtI-ke-pKq" firstAttribute="trailing" secondItem="HyW-Df-mb7" secondAttribute="trailing" constant="112" id="Lcq-hn-mfe"/>
+                            <constraint firstItem="HyW-Df-mb7" firstAttribute="width" secondItem="D9K-Ol-3n5" secondAttribute="width" id="Lws-8t-5ls"/>
+                            <constraint firstItem="D9K-Ol-3n5" firstAttribute="top" secondItem="MOm-5q-TMK" secondAttribute="bottom" constant="222" id="P2z-5Z-YKE"/>
+                            <constraint firstItem="Mki-UT-cRk" firstAttribute="top" secondItem="HyW-Df-mb7" secondAttribute="bottom" constant="101" id="Z30-P0-jHC"/>
+                            <constraint firstItem="Mki-UT-cRk" firstAttribute="bottom" secondItem="JtI-ke-pKq" secondAttribute="bottom" id="a3V-Dl-DF8"/>
+                            <constraint firstItem="HyW-Df-mb7" firstAttribute="height" secondItem="D9K-Ol-3n5" secondAttribute="height" id="g0v-33-Wv7"/>
+                            <constraint firstItem="Mki-UT-cRk" firstAttribute="centerX" secondItem="JtI-ke-pKq" secondAttribute="centerX" id="jVs-iV-2dr"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="JtI-ke-pKq"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="ecL-TP-SKx"/>
+                    <connections>
+                        <outlet property="discoverPhotosButton" destination="D9K-Ol-3n5" id="gOg-S0-IKN"/>
+                        <outlet property="linkToPexels" destination="Mki-UT-cRk" id="9gu-6u-NDF"/>
+                        <outlet property="toMyAlbumButton" destination="HyW-Df-mb7" id="uMS-0X-6W1"/>
+                        <outlet property="welcomeLabel" destination="MOm-5q-TMK" id="3k6-PJ-3YC"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ode-Sl-GmB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-642.02898550724638" y="345.53571428571428"/>
         </scene>
     </scenes>
 </document>

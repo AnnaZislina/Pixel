@@ -14,7 +14,7 @@ class DetailedViewController: UIViewController {
     @IBOutlet weak var detailedSizeLabel: UILabel!
     @IBOutlet weak var saveImageButton: RoundButton!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    @IBOutlet weak var linkLabel: LinkLabel!
+
     
     var photo: Photo!
   

@@ -10,6 +10,8 @@ import UIKit
 
 @IBDesignable
 class LinkLabel: UILabel {
+   
+    //https://www.pexels.com
     
     @IBInspectable
     var url: String? {
@@ -36,8 +38,8 @@ class LinkLabel: UILabel {
     
     private func openUrl(urlString: String!) {
         var url = URL(string: urlString)!
-        if(!urlString.starts(with: "http")) {
-            url = URL(string: "http://" + urlString)!
+        if(!urlString.starts(with: "https")) {
+            url = URL(string: "https://" + urlString)!
         }
         
         if #available(iOS 10.0, *) {
