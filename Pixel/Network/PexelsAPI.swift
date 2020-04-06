@@ -7,11 +7,10 @@
 //
 
 import Foundation
-import CoreData
 
 class PexelsAPI {
     
-    var dataController: DataController!
+    //var dataController: DataController!
 
     var photos: [Photo] = []
     

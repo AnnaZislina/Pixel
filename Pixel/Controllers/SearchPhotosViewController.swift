@@ -8,7 +8,6 @@
 
 import Foundation
 import UIKit
-import CoreData
 
 class SearchPhotosViewController: UIViewController {
     
@@ -23,7 +22,7 @@ class SearchPhotosViewController: UIViewController {
     var selectedIndex = 0
     
     var currentSearchTask: URLSessionTask?
-    var dataController: DataController!
+   // var dataController: DataController!
     
     
     override func viewDidLoad() {
