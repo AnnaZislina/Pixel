@@ -16,10 +16,8 @@ class DetailedViewController: UIViewController {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var linkLabel: LinkLabel!
     
-   // var photo: Photo!
     var photo: Photo!
-   // var dataController: DataController!
-    
+  
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -28,11 +26,10 @@ class DetailedViewController: UIViewController {
         
     }
     
-    @objc func image(_ image: UIImage, didFinishSavingWithError err: Error?, contextInfo: UnsafeRawPointer) {
+    @objc func image(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
         activityIndicator.stopAnimating()
-        if let err = err {
-            // we got back an error!
-            presentAlert(title: "Error", message: err.localizedDescription)
+        if let error = error {
+            presentAlert(title: "Error", message: error.localizedDescription)
         } else {
             presentAlert(title: "Saved!", message: "Image saved successfully")
         }
@@ -46,17 +43,14 @@ class DetailedViewController: UIViewController {
     }
     
     func savePhoto() {
-        
         guard let image = detailedImageView.image else { return }
-        
+        activityIndicator.startAnimating()
         UIImageWriteToSavedPhotosAlbum(image, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
     }
     
 
     @IBAction func saveButtonTapped(_ sender: Any) {
-        
         savePhoto()
-        
     }
     
 }
