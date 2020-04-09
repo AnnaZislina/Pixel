@@ -19,6 +19,9 @@
 		61477B7623C1E151008C8258 /* PexelsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61477B7523C1E151008C8258 /* PexelsAPI.swift */; };
 		61477B7823C1E171008C8258 /* PexelsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61477B7723C1E171008C8258 /* PexelsResponse.swift */; };
 		61477B8323C1E3EB008C8258 /* SearchPhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61477B8023C1E3EB008C8258 /* SearchPhotosViewController.swift */; };
+		6154230B243F698C00A06F31 /* EnterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61542308243F697F00A06F31 /* EnterViewController.swift */; };
+		6154230C243F698C00A06F31 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61542309243F698A00A06F31 /* SignUpViewController.swift */; };
+		6154230D243F698C00A06F31 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6154230A243F698C00A06F31 /* LoginViewController.swift */; };
 		6167A212240A647100F5A367 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6167A211240A647100F5A367 /* DataController.swift */; };
 		617893A82436377200B58C46 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 617893A72436377200B58C46 /* GoogleService-Info.plist */; };
 		617893AA243B262600B58C46 /* MyAlbumTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617893A9243B262600B58C46 /* MyAlbumTableViewController.swift */; };
@@ -46,6 +49,9 @@
 		61477B7523C1E151008C8258 /* PexelsAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PexelsAPI.swift; sourceTree = "<group>"; };
 		61477B7723C1E171008C8258 /* PexelsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PexelsResponse.swift; sourceTree = "<group>"; };
 		61477B8023C1E3EB008C8258 /* SearchPhotosViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchPhotosViewController.swift; sourceTree = "<group>"; };
+		61542308243F697F00A06F31 /* EnterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnterViewController.swift; sourceTree = "<group>"; };
+		61542309243F698A00A06F31 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		6154230A243F698C00A06F31 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		6167A211240A647100F5A367 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		617893A72436377200B58C46 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		617893A9243B262600B58C46 /* MyAlbumTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAlbumTableViewController.swift; sourceTree = "<group>"; };
@@ -152,6 +158,9 @@
 				617893A9243B262600B58C46 /* MyAlbumTableViewController.swift */,
 				617893AB243B26DD00B58C46 /* WelcomeViewController.swift */,
 				617893AD243B476800B58C46 /* MyAlbumTableViewCell.swift */,
+				61542308243F697F00A06F31 /* EnterViewController.swift */,
+				6154230A243F698C00A06F31 /* LoginViewController.swift */,
+				61542309243F698A00A06F31 /* SignUpViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -285,8 +294,10 @@
 				61C5652723C60D2900CFFDF0 /* TableViewCell.swift in Sources */,
 				6102C5F523C8D77F0084F094 /* DownloadImage.swift in Sources */,
 				61477B8323C1E3EB008C8258 /* SearchPhotosViewController.swift in Sources */,
+				6154230D243F698C00A06F31 /* LoginViewController.swift in Sources */,
 				61477B7223C1E132008C8258 /* LinkLabel.swift in Sources */,
 				61477B7323C1E132008C8258 /* RoundButton.swift in Sources */,
+				6154230C243F698C00A06F31 /* SignUpViewController.swift in Sources */,
 				617893AC243B26DD00B58C46 /* WelcomeViewController.swift in Sources */,
 				61477B7823C1E171008C8258 /* PexelsResponse.swift in Sources */,
 				618D4D1424224B3900B47939 /* PhotoModel.swift in Sources */,
@@ -295,6 +306,7 @@
 				61477B5D23C1E038008C8258 /* SceneDelegate.swift in Sources */,
 				618D4D1624224BBA00B47939 /* SrcModel.swift in Sources */,
 				617893AA243B262600B58C46 /* MyAlbumTableViewController.swift in Sources */,
+				6154230B243F698C00A06F31 /* EnterViewController.swift in Sources */,
 				6167A212240A647100F5A367 /* DataController.swift in Sources */,
 				617893AE243B476800B58C46 /* MyAlbumTableViewCell.swift in Sources */,
 			);
