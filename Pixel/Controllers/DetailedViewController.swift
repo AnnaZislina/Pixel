@@ -51,6 +51,7 @@ class DetailedViewController: UIViewController {
         UIImageWriteToSavedPhotosAlbum(image, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
     }
     
+    
     @IBAction func saveButtonTapped(_ sender: Any) {
         
         savePhoto()

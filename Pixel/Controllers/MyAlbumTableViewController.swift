@@ -7,11 +7,25 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseCore
+import FirebaseStorage
+import FirebaseFirestore
 
 class MyAlbumTableViewController: UITableViewController {
+    
+    let cellReuseIdentifier = "myAlbumCell"
+
+    @IBOutlet weak var myAlbumTableView: UITableView!
+    @IBOutlet weak var addNewPhotoButton: UIBarButtonItem!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        myAlbumTableView.delegate = self
+        myAlbumTableView.dataSource = self
+        myAlbumTableView.rowHeight = UITableView.automaticDimension
+        myAlbumTableView.estimatedRowHeight = 400
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -19,12 +33,21 @@ class MyAlbumTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        DispatchQueue.main.async {
+            self.myAlbumTableView.reloadData()
+        }
+    }
+    
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -32,15 +55,14 @@ class MyAlbumTableViewController: UITableViewController {
         return 0
     }
 
-    /*
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
 
-        // Configure the cell...
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell: MyAlbumTableViewCell = self.tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath) as! MyAlbumTableViewCell
 
         return cell
     }
-    */
+  
 
     /*
     // Override to support conditional editing of the table view.
