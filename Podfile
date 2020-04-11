@@ -10,6 +10,7 @@ target 'Pixel' do
   pod 'Firebase/Firestore'
   pod 'Firebase/Auth'
   pod 'Firebase/Storage'
-  pod 'Firebase/Functions'
+  pod 'Firebase/Analytics'
+  pod 'Firebase/Core'
 
 end
