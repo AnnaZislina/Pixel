@@ -13,5 +13,6 @@ target 'Pixel' do
   pod 'Firebase/Analytics'
   pod 'Firebase/Core'
   pod 'Kingfisher'
+  pod 'Firebase/Database'
 
 end
