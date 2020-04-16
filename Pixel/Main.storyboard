@@ -93,6 +93,23 @@
             </objects>
             <point key="canvasLocation" x="247.82608695652175" y="118.52678571428571"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="cNY-IL-b1b">
+            <objects>
+                <navigationController id="pNY-Du-oaT" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="peI-MX-msu"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="xLz-CH-egF">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Lph-ek-PvU" kind="relationship" relationship="rootViewController" id="Kyy-Ye-iLM"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iI2-xX-pmC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="248" y="797"/>
+        </scene>
         <!--My Album Table View Controller-->
         <scene sceneID="vws-PN-dYo">
             <objects>
@@ -135,6 +152,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="iu2-Ks-5fD">
+                        <barButtonItem key="leftBarButtonItem" systemItem="edit" id="TLr-38-K3i">
+                            <color key="tintColor" red="0.43642151359999998" green="0.90563440319999999" blue="0.56567770240000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="3lo-Gc-Jua">
                             <color key="tintColor" red="0.43642151359999998" green="0.90563440319999999" blue="0.56567770240000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </barButtonItem>
@@ -146,7 +166,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5aw-ES-PkT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="248" y="788"/>
+            <point key="canvasLocation" x="1088" y="797"/>
         </scene>
         <!--Detailed View Controller-->
         <scene sceneID="cCh-H0-gMe">
@@ -289,7 +309,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <segue destination="Lph-ek-PvU" kind="show" id="1VR-e7-zcC"/>
+                                    <segue destination="pNY-Du-oaT" kind="show" id="vHR-Nm-4HB"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PIXEL" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MOm-5q-TMK">
