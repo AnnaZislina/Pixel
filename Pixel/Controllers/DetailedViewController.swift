@@ -10,13 +10,6 @@ import UIKit
 import FirebaseStorage
 import FirebaseFirestore
 
-struct Keys {
-    static let photosFolder = "photosFolder"
-    static let photosCollection = "photosCollection"
-    static let uid = "uid"
-    static let photoURL = "photoURL"
-}
-
 class DetailedViewController: UIViewController {
     
     @IBOutlet weak var detailedImageView: UIImageView!
@@ -35,6 +28,7 @@ class DetailedViewController: UIViewController {
         
     }
     
+
     @objc func image(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
        
        // activityIndicator.stopAnimating()
@@ -56,7 +50,7 @@ class DetailedViewController: UIViewController {
     func savePhoto() {
         
         guard let image = detailedImageView.image else { return }
-       // activityIndicator.startAnimating()
+        activityIndicator.startAnimating()
         UIImageWriteToSavedPhotosAlbum(image, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
     }
     
@@ -72,7 +66,7 @@ class DetailedViewController: UIViewController {
         
         let photoName = UUID().uuidString
         
-        let photoReference = Storage.storage().reference().child(Keys.photosFolder).child(photoName)
+        let photoReference = Storage.storage().reference().child(Constants.Keys.photosFolder).child(photoName)
         
         photoReference.putData(data, metadata: nil) { (metadata, err) in
             if let err = err {
@@ -91,10 +85,10 @@ class DetailedViewController: UIViewController {
                     return
                 }
                 
-                let dataRef = Firestore.firestore().collection(Keys.photosCollection).document()
+                let dataRef = Firestore.firestore().collection(Constants.Keys.photosCollection).document()
                 let documentUID = dataRef.documentID
                 let urlString = url.absoluteString
-                let data = [Keys.uid:documentUID, Keys.photoURL:urlString]
+                let data = [Constants.Keys.uid:documentUID, Constants.Keys.photoURL:urlString]
                 
                 dataRef.setData(data) { (err) in
                     if let err = err {
@@ -107,12 +101,10 @@ class DetailedViewController: UIViewController {
         }
     }
     
-    
     @IBAction func saveButtonTapped(_ sender: Any) {
         
-        uploadPhotoToFirebase()
+      //  uploadPhotoToFirebase()
         savePhoto()
-        
     }
     
 }

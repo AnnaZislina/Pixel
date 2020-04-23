@@ -37,6 +37,8 @@ class SignUpViewController: UIViewController {
         return passwordTest.evaluate(with: password)
     }
     
+    
+    
     //Check the fields and validate that the data is correct. If everything is correct, this method returns nil. Otherwise, it returns the error message
     func validateTheFields() -> String? {
         
@@ -50,7 +52,7 @@ class SignUpViewController: UIViewController {
         
         if isPasswordValid(cleanedPassword) == false {
             //Password isn't secure enough
-            return "Please make sure your password is at least 8 characters, contains a special character and a number."
+            return "Please make sure your password is at least 8 characters, contains a letter, a special character and a number."
         }
         return nil
     }

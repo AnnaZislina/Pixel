@@ -79,7 +79,7 @@ extension SearchPhotosViewController: UITableViewDelegate, UITableViewDataSource
         let cell: TableViewCell = self.tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath) as! TableViewCell
         let photo = photos[indexPath.row]
         
-        cell.photographerLabel?.text = photo.photographer
+        cell.photographerLabel?.text = ("Photographer: \(photo.photographer)")
         cell.photoView.downloadImage(urlString: photo.src.large2x)
         
         return cell

@@ -14,5 +14,6 @@ target 'Pixel' do
   pod 'Firebase/Core'
   pod 'Kingfisher'
   pod 'Firebase/Database'
+  pod 'TinyConstraints'
 
 end

@@ -12,13 +12,14 @@ import FirebaseCore
 import FirebaseStorage
 import FirebaseFirestore
 
-class MyAlbumTableViewController: UITableViewController {
+class MyAlbumTableViewController: UIViewController {
     
     let cellReuseIdentifier = "myAlbumCell"
 
     @IBOutlet weak var myAlbumTableView: UITableView!
-    @IBOutlet weak var addNewPhotoButton: UIBarButtonItem!
-
+    @IBOutlet weak var cameraButton: UIBarButtonItem!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -26,14 +27,9 @@ class MyAlbumTableViewController: UITableViewController {
         myAlbumTableView.dataSource = self
         myAlbumTableView.rowHeight = UITableView.automaticDimension
         myAlbumTableView.estimatedRowHeight = 400
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+          
     }
-    
+            
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
@@ -42,28 +38,18 @@ class MyAlbumTableViewController: UITableViewController {
         }
     }
     
+    func presentAlert(title: String, message: String) {
+        
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        present(alert, animated: true)
+    }
+    
 
     // MARK: - Table view data source
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 1
-    }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
-    }
-
-
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        let cell: MyAlbumTableViewCell = self.tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath) as! MyAlbumTableViewCell
-
-        return cell
-    }
-  
-
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -108,5 +94,28 @@ class MyAlbumTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    @IBAction func cameraButtonTapped(_ sender: Any) {
+    }
+    
+}
 
+extension MyAlbumTableViewController: UITableViewDelegate, UITableViewDataSource {
+    
+     func numberOfSections(in tableView: UITableView) -> Int {
+        
+        return 1
+    }
+
+     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        return 10
+    }
+
+     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell: MyImageTableViewCell = self.myAlbumTableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath) as! MyImageTableViewCell
+
+        return cell
+    }
 }
