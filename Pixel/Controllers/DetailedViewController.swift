@@ -31,11 +31,11 @@ class DetailedViewController: UIViewController {
 
     @objc func image(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
        
-       // activityIndicator.stopAnimating()
+        activityIndicator.stopAnimating()
         if let error = error {
             presentAlert(title: "Error", message: error.localizedDescription)
         } else {
-            print("saved")
+            presentAlert(title: "Saved!", message: "Image saved successfully")
         }
     }
     
