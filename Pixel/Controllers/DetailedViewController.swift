@@ -27,7 +27,6 @@ class DetailedViewController: UIViewController {
         detailedImageView.downloadImage(urlString: photo.src.original)
         
     }
-    
 
     @objc func image(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
        
@@ -54,56 +53,8 @@ class DetailedViewController: UIViewController {
         UIImageWriteToSavedPhotosAlbum(image, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
     }
     
-    func uploadPhotoToFirebase() {
-        
-        activityIndicator.startAnimating()
-        
-        guard let image = detailedImageView.image, let data = image.jpegData(compressionQuality: 1.0)
-            else {
-            presentAlert(title: "Error", message: "Something went wrong")
-            return
-        }
-        
-        let photoName = UUID().uuidString
-        
-        let photoReference = Storage.storage().reference().child(Constants.Keys.photosFolder).child(photoName)
-        
-        photoReference.putData(data, metadata: nil) { (metadata, err) in
-            if let err = err {
-                self.presentAlert(title: "Error", message: err.localizedDescription)
-                return
-            }
-            
-            photoReference.downloadURL { (url, err) in
-                if let err = err {
-                    self.presentAlert(title: "Error", message: err.localizedDescription)
-                    return
-                }
-                
-                guard let url = url else {
-                    self.presentAlert(title: "Error", message: "Something went wrong")
-                    return
-                }
-                
-                let dataRef = Firestore.firestore().collection(Constants.Keys.photosCollection).document()
-                let documentUID = dataRef.documentID
-                let urlString = url.absoluteString
-                let data = [Constants.Keys.uid:documentUID, Constants.Keys.photoURL:urlString]
-                
-                dataRef.setData(data) { (err) in
-                    if let err = err {
-                        self.presentAlert(title: "Error", message: err.localizedDescription)
-                        return
-                    }
-                    self.presentAlert(title: "Saved!", message: "Image saved successfully")
-                }
-            }
-        }
-    }
     
     @IBAction func saveButtonTapped(_ sender: Any) {
-        
-      //  uploadPhotoToFirebase()
         savePhoto()
     }
     

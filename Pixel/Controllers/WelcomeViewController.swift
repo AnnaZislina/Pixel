@@ -18,7 +18,23 @@ class WelcomeViewController: UIViewController {
     @IBOutlet weak var toMyAlbumButton: RoundButton!
     @IBOutlet weak var linkToPexels: LinkLabel!
     
-    let profileImageViewWidth: CGFloat = 100
+    let profileImageViewWidth: CGFloat = 200
+    let profileImageName = "profilePicture"
+    
+    func loadProfileImage() {
+        
+        let photoReference = Storage.storage().reference().child(Constants.Keys.photosFolder).child(profileImageName)
+        
+        photoReference.getData(maxSize: 1 * 1024 * 1024) { data, error in
+            
+            if error != nil {
+                self.presentAlert(title: "Error", message: "Something went wrong")
+            } else {
+                let image = UIImage(data: data!)
+                self.profileImageView.image = image
+            }
+        }
+    }
     
     lazy var profileImageView: UIImageView = {
         let imageView = UIImageView()
@@ -46,6 +62,7 @@ class WelcomeViewController: UIViewController {
         super.viewDidLoad()
         addViews()
         constrainViews()
+        loadProfileImage()
     }
     
     func addViews() {
@@ -70,83 +87,21 @@ class WelcomeViewController: UIViewController {
     }
     
     func uploadPhotoToFirebase() {
-        
+
         guard let image = profileImageView.image, let data = image.jpegData(compressionQuality: 1.0)
             else {
             presentAlert(title: "Error", message: "Something went wrong")
             return
         }
         
-        let photoName = UUID().uuidString
-        
-        let photoReference = Storage.storage().reference().child(Constants.Keys.photosFolder).child(photoName)
-        
+        let photoReference = Storage.storage().reference().child(Constants.Keys.photosFolder).child(profileImageName)
+
         photoReference.putData(data, metadata: nil) { (metadata, err) in
             if let err = err {
                 self.presentAlert(title: "Error", message: err.localizedDescription)
                 return
             }
-            
-            photoReference.downloadURL { (url, err) in
-                if let err = err {
-                    self.presentAlert(title: "Error", message: err.localizedDescription)
-                    return
-                }
-                
-                guard let url = url else {
-                    self.presentAlert(title: "Error", message: "Something went wrong")
-                    return
-                }
-                
-                let dataRef = Firestore.firestore().collection(Constants.Keys.photosCollection).document()
-                let documentUID = dataRef.documentID
-                let urlString = url.absoluteString
-                let data = [Constants.Keys.uid:documentUID, Constants.Keys.photoURL:urlString]
-                
-                dataRef.setData(data) { (err) in
-                    if let err = err {
-                        self.presentAlert(title: "Error", message: err.localizedDescription)
-                        return
-                    }
-                    self.presentAlert(title: "Saved!", message: "Image saved successfully")
-                }
-            }
-        }
-    }
-    
-    func downloadFromFirebase() {
-        
-        guard let uid = UserDefaults.standard.value(forKey: Constants.Keys.uid) else {
-            self.presentAlert(title: "Error", message: "Something went wrong")
-            return
-        }
-        
-        let query = Firestore.firestore().collection(Constants.Keys.photosCollection).whereField(Constants.Keys.uid, isEqualTo: uid)
-        
-        query.getDocuments { (snapshot, err) in
-            if let err = err {
-                self.presentAlert(title: "Error", message: err.localizedDescription)
-                return
-            }
-            
-            guard let snapshot = snapshot,
-                let data = snapshot.documents.first?.data(),
-                let urlString = data[Constants.Keys.photoURL] as? String,
-                let url = URL(string: urlString) else {
-                self.presentAlert(title: "Error", message: "Something went wrong")
-                return
-            }
-            
-            let resourse = ImageResource(downloadURL: url)
-            
-            self.profileImageView.kf.setImage(with: resourse) { (result) in
-                switch result {
-                case .success(_):
-                    self.presentAlert(title: "Success", message: "Successfully download image from Firebase")
-                case .failure(let err):
-                    self.presentAlert(title: "Error", message: err.localizedDescription)
-                }
-            }
+            self.presentAlert(title: "Saved!", message: "Profile image saved successfully")
         }
     }
 
@@ -177,12 +132,10 @@ extension WelcomeViewController: UIImagePickerControllerDelegate, UINavigationCo
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let editedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
             self.profileImageView.image = editedImage.withRenderingMode(.alwaysOriginal)
-            //self.uploadPhotoToFirebase()
-            //self.downloadFromFirebase()
+            self.uploadPhotoToFirebase()
         } else if let originalImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             self.profileImageView.image = originalImage.withRenderingMode(.alwaysOriginal)
-            //self.uploadPhotoToFirebase()
-           // self.downloadFromFirebase()
+            self.uploadPhotoToFirebase()
         }
         dismiss(animated: true, completion: nil)
     }

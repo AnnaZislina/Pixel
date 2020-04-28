@@ -65,12 +65,10 @@ extension SearchPhotosViewController: UISearchBarDelegate {
 extension SearchPhotosViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        
         return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         return photos.count
     }
     
@@ -78,10 +76,8 @@ extension SearchPhotosViewController: UITableViewDelegate, UITableViewDataSource
         
         let cell: TableViewCell = self.tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath) as! TableViewCell
         let photo = photos[indexPath.row]
-        
         cell.photographerLabel?.text = ("Photographer: \(photo.photographer)")
         cell.photoView.downloadImage(urlString: photo.src.large2x)
-        
         return cell
     }
     

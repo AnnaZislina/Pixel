@@ -2,7 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="M39-rD-T2b">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -93,46 +93,6 @@
             </objects>
             <point key="canvasLocation" x="247.82608695652175" y="118.52678571428571"/>
         </scene>
-        <!--Add Image View Controller-->
-        <scene sceneID="ZEk-J8-hsl">
-            <objects>
-                <viewController id="U7R-QM-znd" customClass="AddImageViewController" customModule="Pixel" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="imG-Hp-RsO">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YRs-9V-DQY">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wrl-xZ-U8f">
-                                <rect key="frame" x="62" y="711" width="291" height="42"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" title="Add This Image To My Album"/>
-                                <connections>
-                                    <action selector="addImageButtonTapped:" destination="U7R-QM-znd" eventType="touchUpInside" id="eT9-a8-Eb1"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <constraints>
-                            <constraint firstItem="UZV-4k-yt0" firstAttribute="trailing" secondItem="YRs-9V-DQY" secondAttribute="trailing" id="0eS-Va-FSr"/>
-                            <constraint firstItem="UZV-4k-yt0" firstAttribute="bottom" secondItem="YRs-9V-DQY" secondAttribute="bottom" id="ImB-JA-iMG"/>
-                            <constraint firstItem="YRs-9V-DQY" firstAttribute="top" secondItem="UZV-4k-yt0" secondAttribute="top" id="cbq-AA-9lk"/>
-                            <constraint firstItem="YRs-9V-DQY" firstAttribute="leading" secondItem="UZV-4k-yt0" secondAttribute="leading" id="qrw-u7-ftU"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="UZV-4k-yt0"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="Kgl-zG-TuD"/>
-                    <connections>
-                        <outlet property="addImageButton" destination="wrl-xZ-U8f" id="IRK-Sy-xkM"/>
-                        <outlet property="postImageView" destination="YRs-9V-DQY" id="FOj-kb-9nt"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="5HB-3x-jS1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2288" y="758"/>
-        </scene>
         <!--My Album Table View Controller-->
         <scene sceneID="fJV-Rb-nlJ">
             <objects>
@@ -153,7 +113,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="394"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="R8Y-6U-eEz">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="R8Y-6U-eEz">
                                                     <rect key="frame" x="0.0" y="11" width="414" height="383"/>
                                                 </imageView>
                                             </subviews>
