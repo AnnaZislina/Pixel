@@ -27,6 +27,7 @@ class SearchPhotosViewController: UIViewController {
         tableView.delegate = self
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 400
+        tableView.keyboardDismissMode = .onDrag
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -87,5 +88,9 @@ extension SearchPhotosViewController: UITableViewDelegate, UITableViewDataSource
         performSegue(withIdentifier: "showDetail", sender: nil)
         tableView.deselectRow(at: indexPath, animated: true)
         
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 400
     }
 }

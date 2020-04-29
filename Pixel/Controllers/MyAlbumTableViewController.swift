@@ -53,10 +53,12 @@ class MyAlbumTableViewController: UIViewController {
      func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         
         if editingStyle == .delete {
+            Image.removeImages()
             images.remove(at: indexPath.row)
             myAlbumTableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
+    
     
     @IBAction func cameraButtonTapped(_ sender: Any) {
         showSourceTypeAlert()
@@ -111,6 +113,7 @@ extension MyAlbumTableViewController: UINavigationControllerDelegate, UIImagePic
             let image = Image(imageData: selectedImage.pngData()!)
             images.append(image)
             Image.saveImages(images)
+            myAlbumTableView.reloadData()
             dismiss(animated: true, completion: nil)
             self.presentAlert(title: "Added!", message: "Image successfully added to album")
         }

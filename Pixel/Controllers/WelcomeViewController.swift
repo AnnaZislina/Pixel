@@ -113,11 +113,8 @@ extension WelcomeViewController: UIImagePickerControllerDelegate, UINavigationCo
         let photoLibraryAction = UIAlertAction(title: "Choose a Photo", style: .default) { (action) in
             self.showImagePickerController(sourceType: .photoLibrary)
         }
-        let cameraAction = UIAlertAction(title: "Take a New Photo", style: .default) { (action) in
-            self.showImagePickerController(sourceType: .camera)
-        }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        Alert.showAlert(style: .actionSheet, title: nil, message: nil, actions: [photoLibraryAction, cameraAction, cancelAction], completion: nil)
+        Alert.showAlert(style: .actionSheet, title: nil, message: nil, actions: [photoLibraryAction, cancelAction], completion: nil)
     }
     
     func showImagePickerController(sourceType: UIImagePickerController.SourceType) {

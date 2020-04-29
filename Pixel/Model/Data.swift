@@ -35,4 +35,16 @@ class Image: Codable {
         let codedImages = try? propertyListEncoder.encode(images)
         try? codedImages?.write(to: ArchiveURL, options: .noFileProtection)
     }
+    
+    static func removeImages() {
+        let fileManager = FileManager.default
+        let myDocuments = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let diskCacheStorageBaseUrl = myDocuments.appendingPathComponent("diskCache")
+        guard let filePaths = try? fileManager.contentsOfDirectory(at: diskCacheStorageBaseUrl, includingPropertiesForKeys: nil, options: []) else { return }
+        for filePath in filePaths {
+            try? fileManager.removeItem(at: filePath)
+        }
+    }
+    
+
 }

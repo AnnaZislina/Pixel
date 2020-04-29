@@ -254,7 +254,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D9K-Ol-3n5" customClass="RoundButton" customModule="Pixel" customModuleProvider="target">
-                                <rect key="frame" x="112" y="529" width="190" height="100"/>
+                                <rect key="frame" x="112.5" y="529" width="190" height="100"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="4ph-8K-RMX"/>
@@ -281,7 +281,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HyW-Df-mb7" customClass="RoundButton" customModule="Pixel" customModuleProvider="target">
-                                <rect key="frame" x="112" y="637" width="190" height="100"/>
+                                <rect key="frame" x="112.5" y="637" width="190" height="100"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="Mns-zX-fJw"/>
@@ -306,8 +306,8 @@
                                     <segue destination="69U-VT-YCZ" kind="show" id="RYI-Jg-vPQ"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Photos provided by Pexel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mki-UT-cRk" customClass="LinkLabel" customModule="Pixel" customModuleProvider="target">
-                                <rect key="frame" x="136" y="838" width="142" height="24"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Photos provided by Pexels" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mki-UT-cRk" customClass="LinkLabel" customModule="Pixel" customModuleProvider="target">
+                                <rect key="frame" x="94" y="838" width="227" height="24"/>
                                 <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -318,14 +318,13 @@
                         </subviews>
                         <color key="backgroundColor" red="0.79834574460983276" green="0.94858461618423462" blue="0.8364453911781311" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="Mki-UT-cRk" firstAttribute="leading" secondItem="JtI-ke-pKq" secondAttribute="leading" constant="136" id="00e-zs-APL"/>
-                            <constraint firstItem="JtI-ke-pKq" firstAttribute="trailing" secondItem="Mki-UT-cRk" secondAttribute="trailing" constant="136" id="2B4-Sm-9up"/>
+                            <constraint firstItem="Mki-UT-cRk" firstAttribute="leading" secondItem="JtI-ke-pKq" secondAttribute="leading" constant="94" id="00e-zs-APL"/>
+                            <constraint firstItem="JtI-ke-pKq" firstAttribute="trailing" secondItem="Mki-UT-cRk" secondAttribute="trailing" constant="93" id="2B4-Sm-9up"/>
                             <constraint firstItem="HyW-Df-mb7" firstAttribute="top" secondItem="D9K-Ol-3n5" secondAttribute="bottom" constant="8" id="6j3-C2-eDw"/>
                             <constraint firstItem="D9K-Ol-3n5" firstAttribute="centerX" secondItem="Mki-UT-cRk" secondAttribute="centerX" id="L2M-Ng-cfa"/>
                             <constraint firstItem="D9K-Ol-3n5" firstAttribute="leading" secondItem="HyW-Df-mb7" secondAttribute="leading" id="MAc-Q6-Vjf"/>
                             <constraint firstItem="Mki-UT-cRk" firstAttribute="top" secondItem="HyW-Df-mb7" secondAttribute="bottom" constant="101" id="Z30-P0-jHC"/>
                             <constraint firstItem="Mki-UT-cRk" firstAttribute="bottom" secondItem="JtI-ke-pKq" secondAttribute="bottom" id="a3V-Dl-DF8"/>
-                            <constraint firstItem="Mki-UT-cRk" firstAttribute="centerX" secondItem="JtI-ke-pKq" secondAttribute="centerX" id="jVs-iV-2dr"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="JtI-ke-pKq"/>
                     </view>
