@@ -10,8 +10,6 @@ import Foundation
 
 class PexelsAPI {
     
-    //var dataController: DataController!
-
     var photos: [Photo] = []
     
     static let API_KEY = "563492ad6f917000010000013220e319baaa4faca30cd9ee99abf6cf"

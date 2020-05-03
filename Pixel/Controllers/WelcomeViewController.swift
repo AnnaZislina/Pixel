@@ -10,7 +10,6 @@ import UIKit
 import TinyConstraints
 import FirebaseStorage
 import FirebaseFirestore
-import Kingfisher
 
 class WelcomeViewController: UIViewController {
 
@@ -19,11 +18,10 @@ class WelcomeViewController: UIViewController {
     @IBOutlet weak var linkToPexels: LinkLabel!
     
     let profileImageViewWidth: CGFloat = 200
-    let profileImageName = "profilePicture"
     
     func loadProfileImage() {
         
-        let photoReference = Storage.storage().reference().child(Constants.Keys.photosFolder).child(profileImageName)
+        let photoReference = Storage.storage().reference().child(Constants.Keys.photosFolder).child(Constants.Keys.profileImageName)
         
         photoReference.getData(maxSize: 1 * 1024 * 1024) { data, error in
             
@@ -37,6 +35,7 @@ class WelcomeViewController: UIViewController {
     }
     
     lazy var profileImageView: UIImageView = {
+        
         let imageView = UIImageView()
         imageView.image =  #imageLiteral(resourceName: "DefaultProfileImage").withRenderingMode(.alwaysOriginal)
         imageView.contentMode = .scaleAspectFill
@@ -46,6 +45,7 @@ class WelcomeViewController: UIViewController {
     }()
     
     lazy var profileImageButton: UIButton = {
+       
         var button = UIButton(type: .system)
         button.backgroundColor = .clear
         button.layer.cornerRadius = profileImageViewWidth / 2
@@ -60,17 +60,20 @@ class WelcomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         addViews()
         constrainViews()
         loadProfileImage()
     }
     
     func addViews() {
+        
         view.addSubview(profileImageView)
         view.addSubview(profileImageButton)
     }
     
     func constrainViews() {
+        
         profileImageView.topToSuperview(offset: 36, usingSafeArea: true)
         profileImageView.centerXToSuperview()
         profileImageView.width(profileImageViewWidth)
@@ -94,7 +97,7 @@ class WelcomeViewController: UIViewController {
             return
         }
         
-        let photoReference = Storage.storage().reference().child(Constants.Keys.photosFolder).child(profileImageName)
+        let photoReference = Storage.storage().reference().child(Constants.Keys.photosFolder).child(Constants.Keys.profileImageName)
 
         photoReference.putData(data, metadata: nil) { (metadata, err) in
             if let err = err {
@@ -110,6 +113,7 @@ class WelcomeViewController: UIViewController {
 extension WelcomeViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     func showSourceTypeAlert() {
+        
         let photoLibraryAction = UIAlertAction(title: "Choose a Photo", style: .default) { (action) in
             self.showImagePickerController(sourceType: .photoLibrary)
         }
@@ -127,6 +131,7 @@ extension WelcomeViewController: UIImagePickerControllerDelegate, UINavigationCo
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
         if let editedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
             self.profileImageView.image = editedImage.withRenderingMode(.alwaysOriginal)
             self.uploadPhotoToFirebase()

@@ -11,6 +11,7 @@ import Firebase
 import FirebaseCore
 import FirebaseStorage
 import FirebaseFirestore
+import Kingfisher
 
 class MyAlbumTableViewController: UIViewController {
     
@@ -37,6 +38,7 @@ class MyAlbumTableViewController: UIViewController {
     }
             
     func presentAlert(title: String, message: String) {
+        
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default))
         present(alert, animated: true)
@@ -46,6 +48,7 @@ class MyAlbumTableViewController: UIViewController {
 
     // Override to support conditional editing of the table view.
      func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+       
         return true
     }
     
@@ -53,14 +56,17 @@ class MyAlbumTableViewController: UIViewController {
      func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         
         if editingStyle == .delete {
-            Image.removeImages()
             images.remove(at: indexPath.row)
+           // Image.removeImages(images)
+           // Image.remove()
+            Image.removeImages()
             myAlbumTableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
     
     
     @IBAction func cameraButtonTapped(_ sender: Any) {
+        
         showSourceTypeAlert()
     }
     
@@ -69,10 +75,12 @@ class MyAlbumTableViewController: UIViewController {
 extension MyAlbumTableViewController: UITableViewDelegate, UITableViewDataSource {
     
      func numberOfSections(in tableView: UITableView) -> Int {
+       
         return 1
     }
 
      func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
         return images.count
     }
 
@@ -85,6 +93,7 @@ extension MyAlbumTableViewController: UITableViewDelegate, UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
         return 400
     }
 }
@@ -109,6 +118,7 @@ extension MyAlbumTableViewController: UINavigationControllerDelegate, UIImagePic
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
         if let selectedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             let image = Image(imageData: selectedImage.pngData()!)
             images.append(image)

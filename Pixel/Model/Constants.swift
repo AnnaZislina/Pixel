@@ -20,6 +20,7 @@ struct Constants {
         static let uid = "uid"
         static let photoURL = "photoURL"
         static let photoPosts = "photoPosts"
+        static let profileImageName = "profilePicture"
         
     }
 }

@@ -42,6 +42,7 @@
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Photographer" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E7F-w6-sci">
                                                     <rect key="frame" x="20" y="336" width="374" height="24"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -104,7 +105,7 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Rgf-yt-JAt">
                                 <rect key="frame" x="0.0" y="57" width="414" height="839"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="myAlbumCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="myAlbumCell" rowHeight="394" id="ywb-1r-L9v" customClass="MyImageTableViewCell" customModule="Pixel" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="394"/>
@@ -402,12 +403,22 @@
                                     </button>
                                 </subviews>
                             </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PIXEL" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zux-Fo-1DR">
+                                <rect key="frame" x="136" y="205" width="143" height="88"/>
+                                <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="55"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="zux-Fo-1DR" firstAttribute="top" secondItem="nKy-RO-3h3" secondAttribute="top" constant="117" id="Ejy-so-6PO"/>
+                            <constraint firstItem="a94-Jh-TLa" firstAttribute="top" secondItem="zux-Fo-1DR" secondAttribute="bottom" constant="409" id="F54-Cb-nMG"/>
                             <constraint firstItem="nKy-RO-3h3" firstAttribute="trailing" secondItem="a94-Jh-TLa" secondAttribute="trailing" constant="40" id="QLe-rq-Wt3"/>
                             <constraint firstItem="a94-Jh-TLa" firstAttribute="leading" secondItem="nKy-RO-3h3" secondAttribute="leading" constant="40" id="VOy-mk-H36"/>
                             <constraint firstItem="nKy-RO-3h3" firstAttribute="bottom" secondItem="a94-Jh-TLa" secondAttribute="bottom" constant="40" id="WpI-VI-z8Y"/>
+                            <constraint firstItem="nKy-RO-3h3" firstAttribute="trailing" secondItem="zux-Fo-1DR" secondAttribute="trailing" constant="135" id="aBN-3A-6oD"/>
+                            <constraint firstItem="zux-Fo-1DR" firstAttribute="leading" secondItem="nKy-RO-3h3" secondAttribute="leading" constant="136" id="aid-Xo-wpn"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="nKy-RO-3h3"/>
                     </view>

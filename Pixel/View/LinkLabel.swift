@@ -11,10 +11,7 @@ import UIKit
 @IBDesignable
 class LinkLabel: UILabel {
    
-    //https://www.pexels.com
-    
-    @IBInspectable
-    var url: String? {
+    @IBInspectable var url: String? {
         didSet {
             let tap = UITapGestureRecognizer(target: self, action: #selector(self.onLabelClick(sender:)))
             self.isUserInteractionEnabled = true

@@ -21,6 +21,7 @@ class SignUpViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         setUpElements()
     }
     
@@ -57,11 +58,13 @@ class SignUpViewController: UIViewController {
     }
     
     func showError(_ message: String) {
+       
         errorLabel.text = message
         errorLabel.alpha = 1
     }
     
     func transitionToWelcomeVC() {
+        
         let welcomeVC = storyboard?.instantiateViewController(identifier: Constants.Storyboard.welcomeVC) as? WelcomeViewController
         
         view.window?.rootViewController = welcomeVC

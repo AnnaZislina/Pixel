@@ -19,6 +19,7 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         setUpElements()
     }
     
@@ -50,6 +51,7 @@ class LoginViewController: UIViewController {
     }
     
     func showError(_ message: String) {
+        
         errorLabel.text = message
         errorLabel.alpha = 1
     }
