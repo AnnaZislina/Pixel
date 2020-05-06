@@ -16,10 +16,11 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var loginButton: RoundButton!
     @IBOutlet weak var errorLabel: UILabel!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
-    override func viewDidLoad() {
+        override func viewDidLoad() {
         super.viewDidLoad()
-        
+            activityIndicator.isHidden = true
         setUpElements()
     }
     
@@ -57,6 +58,8 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func loginButtonPressed(_ sender: Any) {
+        
+        activityIndicator.startAnimating()
         
         //Validate text fields
         let error = validatefields()

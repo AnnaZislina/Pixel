@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import FirebaseStorage
 
 extension UIImageView {
     
@@ -25,4 +26,5 @@ extension UIImageView {
        })
         task.resume()
     }
+    
 }

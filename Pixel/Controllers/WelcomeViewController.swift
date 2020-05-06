@@ -19,21 +19,6 @@ class WelcomeViewController: UIViewController {
     
     let profileImageViewWidth: CGFloat = 200
     
-    func loadProfileImage() {
-        
-        let photoReference = Storage.storage().reference().child(Constants.Keys.photosFolder).child(Constants.Keys.profileImageName)
-        
-        photoReference.getData(maxSize: 1 * 1024 * 1024) { data, error in
-            
-            if error != nil {
-                self.presentAlert(title: "Error", message: "Something went wrong")
-            } else {
-                let image = UIImage(data: data!)
-                self.profileImageView.image = image
-            }
-        }
-    }
-    
     lazy var profileImageView: UIImageView = {
         
         let imageView = UIImageView()
@@ -89,8 +74,23 @@ class WelcomeViewController: UIViewController {
         present(alert, animated: true)
     }
     
+    func loadProfileImage() {
+        
+        let photoReference = Storage.storage().reference().child(Constants.Keys.photosFolder).child(Constants.Keys.profileImageName)
+        
+        photoReference.getData(maxSize: 1 * 1024 * 1024) { data, error in
+            
+            if error != nil {
+                self.presentAlert(title: "Error", message: "Something went wrong")
+            } else {
+                let image = UIImage(data: data!)
+                self.profileImageView.image = image
+            }
+        }
+    }
+    
     func uploadPhotoToFirebase() {
-
+    
         guard let image = profileImageView.image, let data = image.jpegData(compressionQuality: 1.0)
             else {
             presentAlert(title: "Error", message: "Something went wrong")

@@ -7,8 +7,6 @@
 //
 
 import UIKit
-import FirebaseStorage
-import FirebaseFirestore
 
 class DetailedViewController: UIViewController {
     

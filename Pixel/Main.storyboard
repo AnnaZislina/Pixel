@@ -178,7 +178,7 @@
                                     <constraint firstAttribute="width" constant="414" id="uh2-cr-4h7"/>
                                 </constraints>
                             </imageView>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="Gjm-jc-XAx">
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="Gjm-jc-XAx">
                                 <rect key="frame" x="199" y="290" width="20" height="20"/>
                                 <color key="color" red="0.43642151355743408" green="0.90563440322875977" blue="0.5656777024269104" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </activityIndicatorView>
@@ -490,17 +490,27 @@
                                     <constraint firstItem="78A-1Z-Y70" firstAttribute="height" secondItem="pA9-Z3-D4t" secondAttribute="height" id="cyN-sB-NeA"/>
                                 </constraints>
                             </stackView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="k2i-N7-sbq">
+                                <rect key="frame" x="197" y="438" width="20" height="20"/>
+                                <color key="color" red="0.43642151355743408" green="0.90563440322875977" blue="0.5656777024269104" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="w38-9L-1N4" firstAttribute="trailing" secondItem="Evd-y5-1Rr" secondAttribute="trailing" constant="40" id="HsU-79-uLr"/>
                             <constraint firstItem="Evd-y5-1Rr" firstAttribute="leading" secondItem="w38-9L-1N4" secondAttribute="leading" constant="40" id="W8Y-wy-dE3"/>
+                            <constraint firstItem="k2i-N7-sbq" firstAttribute="leading" secondItem="w38-9L-1N4" secondAttribute="leading" constant="197" id="bcC-XF-wSZ"/>
+                            <constraint firstItem="w38-9L-1N4" firstAttribute="trailing" secondItem="k2i-N7-sbq" secondAttribute="trailing" constant="197" id="ccc-g0-47N"/>
+                            <constraint firstItem="k2i-N7-sbq" firstAttribute="top" secondItem="Evd-y5-1Rr" secondAttribute="bottom" constant="72.5" id="e7o-Yl-OOr"/>
+                            <constraint firstItem="k2i-N7-sbq" firstAttribute="centerY" secondItem="1nA-BO-6lq" secondAttribute="centerY" id="hlO-at-won"/>
                             <constraint firstItem="Evd-y5-1Rr" firstAttribute="top" secondItem="w38-9L-1N4" secondAttribute="top" constant="40" id="oFI-1A-xSw"/>
+                            <constraint firstItem="w38-9L-1N4" firstAttribute="bottom" secondItem="k2i-N7-sbq" secondAttribute="bottom" constant="404" id="oM7-of-n5C"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="w38-9L-1N4"/>
                     </view>
                     <navigationItem key="navigationItem" id="ORt-py-8pc"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="k2i-N7-sbq" id="R2e-tq-0Od"/>
                         <outlet property="emailTextField" destination="pA9-Z3-D4t" id="Fzv-GU-4QS"/>
                         <outlet property="errorLabel" destination="uOl-Nb-aqa" id="bm7-n8-OoK"/>
                         <outlet property="loginButton" destination="78A-1Z-Y70" id="jLi-EQ-2Py"/>
@@ -581,17 +591,29 @@
                                     <constraint firstItem="myt-p9-UEy" firstAttribute="height" secondItem="qKM-pV-sZE" secondAttribute="height" id="oqe-3Y-Jhn"/>
                                 </constraints>
                             </stackView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="Lae-w3-5sf">
+                                <rect key="frame" x="197" y="567" width="20" height="23"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="23" id="bGq-6q-qQI"/>
+                                </constraints>
+                                <color key="color" red="0.43642151355743408" green="0.90563440322875977" blue="0.5656777024269104" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="bLV-DJ-bjP" firstAttribute="top" secondItem="mvx-ro-TkA" secondAttribute="top" constant="40" id="6qO-Rt-4QY"/>
+                            <constraint firstItem="mvx-ro-TkA" firstAttribute="trailing" secondItem="Lae-w3-5sf" secondAttribute="trailing" constant="197" id="7xF-BO-5AO"/>
+                            <constraint firstItem="Lae-w3-5sf" firstAttribute="top" secondItem="bLV-DJ-bjP" secondAttribute="bottom" constant="61.5" id="ZDW-EB-dNF"/>
                             <constraint firstItem="mvx-ro-TkA" firstAttribute="trailing" secondItem="bLV-DJ-bjP" secondAttribute="trailing" constant="40" id="b6X-7S-U3G"/>
+                            <constraint firstItem="Lae-w3-5sf" firstAttribute="leading" secondItem="mvx-ro-TkA" secondAttribute="leading" constant="197" id="rHz-gG-X1A"/>
+                            <constraint firstItem="mvx-ro-TkA" firstAttribute="bottom" secondItem="Lae-w3-5sf" secondAttribute="bottom" constant="272" id="t0e-vZ-k7I"/>
                             <constraint firstItem="bLV-DJ-bjP" firstAttribute="leading" secondItem="mvx-ro-TkA" secondAttribute="leading" constant="40" id="wA1-Sl-enc"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="mvx-ro-TkA"/>
                     </view>
                     <navigationItem key="navigationItem" id="0hV-uS-jim"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="Lae-w3-5sf" id="ebA-NC-h0E"/>
                         <outlet property="emailTextField" destination="myt-p9-UEy" id="EAy-ef-WpI"/>
                         <outlet property="errorLabel" destination="6bj-gj-gT3" id="rg8-2g-snc"/>
                         <outlet property="firstNameTextField" destination="qKM-pV-sZE" id="kCG-jC-XHd"/>
@@ -602,7 +624,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ccm-Wh-6pO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1603" y="119"/>
+            <point key="canvasLocation" x="-1604.3478260869567" y="118.52678571428571"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="C3y-08-Hg5">

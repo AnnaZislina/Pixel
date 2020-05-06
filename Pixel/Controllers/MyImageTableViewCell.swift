@@ -7,12 +7,13 @@
 //
 
 import UIKit
+import FirebaseStorage
 
 class MyImageTableViewCell: UITableViewCell {
 
     @IBOutlet weak var myImageView: UIImageView!
     
-        override func awakeFromNib() {
+    override func awakeFromNib() {
         super.awakeFromNib()
     }
 

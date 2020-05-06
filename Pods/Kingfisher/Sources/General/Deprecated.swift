@@ -667,7 +667,7 @@ public typealias ImageView = KFCrossPlatformImageView
 public typealias Button = KFCrossPlatformButton
 #else
 @available(*, deprecated, message: "Use `KFCrossPlatformImage` instead.")
-public typealias Image = KFCrossPlatformImage
+public typealias AlbumImage = KFCrossPlatformImage
 @available(*, deprecated, message: "Use `KFCrossPlatformColor` instead.")
 public typealias Color = KFCrossPlatformColor
     #if !os(watchOS)

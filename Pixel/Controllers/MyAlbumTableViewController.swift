@@ -20,7 +20,7 @@ class MyAlbumTableViewController: UIViewController {
     @IBOutlet weak var myAlbumTableView: UITableView!
     @IBOutlet weak var cameraButton: UIBarButtonItem!
     
-    var images: [Image] = []
+    var images: [AlbumImage] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,11 +30,12 @@ class MyAlbumTableViewController: UIViewController {
         myAlbumTableView.rowHeight = UITableView.automaticDimension
         myAlbumTableView.estimatedRowHeight = 400
         
-        if let savedImages = Image.loadImages() {
+        if let savedImages = AlbumImage.loadImages() {
             images = savedImages
         } else {
-            images = Image.loadSampleImages()
+            images = AlbumImage.loadSampleImages()
         }
+        
     }
             
     func presentAlert(title: String, message: String) {
@@ -56,10 +57,8 @@ class MyAlbumTableViewController: UIViewController {
      func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         
         if editingStyle == .delete {
+            AlbumImage.removeImage(images[indexPath.row])
             images.remove(at: indexPath.row)
-           // Image.removeImages(images)
-           // Image.remove()
-            Image.removeImages()
             myAlbumTableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
@@ -87,10 +86,45 @@ extension MyAlbumTableViewController: UITableViewDelegate, UITableViewDataSource
      func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell: MyImageTableViewCell = self.myAlbumTableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath) as! MyImageTableViewCell
+        
         cell.myImageView.image = UIImage(data: images[indexPath.row].imageData!)
         
+//        func loadAlbumImages() {
+//
+//            let photoReference = Storage.storage().reference().child(Constants.Keys.photosFolder).child(Constants.Keys.profileImageName)
+//
+//            photoReference.getData(maxSize: 1 * 1024 * 1024) { data, error in
+//
+//                if error != nil {
+//                    self.presentAlert(title: "Error", message: "Something went wrong")
+//                } else {
+//                    let image = UIImage(data: data!)
+//                    cell.myImageView.image = image
+//                }
+//            }
+//        }
+//
+//        func uploadToFirebase() {
+//
+//            guard let image = cell.myImageView.image, let data = image.jpegData(compressionQuality: 1.0)
+//             else {
+//                presentAlert(title: "Error", message: "Something went wrong")
+//                return
+//            }
+//
+//            let photoReference = Storage.storage().reference().child(Constants.Keys.photosFolder).child(Constants.Keys.profileImageName)
+//
+//                photoReference.putData(data, metadata: nil) { (metadata, err) in
+//                    if let err = err {
+//                        self.presentAlert(title: "Error", message: err.localizedDescription)
+//                        return
+//                    }
+//                    self.presentAlert(title: "Saved!", message: "Profile image saved successfully")
+//            }
+//        }
         return cell
     }
+
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
@@ -119,10 +153,14 @@ extension MyAlbumTableViewController: UINavigationControllerDelegate, UIImagePic
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
+        
+        
         if let selectedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-            let image = Image(imageData: selectedImage.pngData()!)
+            let image = AlbumImage(imageData: selectedImage.pngData()!)
+            // Add selected image to album
             images.append(image)
-            Image.saveImages(images)
+            // Save the whole album to URL Archive
+            AlbumImage.saveImages(images)
             myAlbumTableView.reloadData()
             dismiss(animated: true, completion: nil)
             self.presentAlert(title: "Added!", message: "Image successfully added to album")
