@@ -14,8 +14,8 @@ class SearchPhotosViewController: UIViewController {
     let cellReuseIdentifier = "cell"
     
     @IBOutlet weak var tableView: UITableView!
-    
-    var searchController: UISearchController!
+
+        var searchController: UISearchController!
     var photos: [Photo] = []
     var selectedIndex = 0
     var currentSearchTask: URLSessionTask?
@@ -28,6 +28,8 @@ class SearchPhotosViewController: UIViewController {
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 400
         tableView.keyboardDismissMode = .onDrag
+        tableView.separatorStyle = .none
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -79,7 +81,15 @@ extension SearchPhotosViewController: UITableViewDelegate, UITableViewDataSource
         let cell: TableViewCell = self.tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath) as! TableViewCell
         let photo = photos[indexPath.row]
         cell.photographerLabel?.text = ("Photographer: \(photo.photographer)")
-        cell.photoView.downloadImage(urlString: photo.src.large2x)
+        
+        cell.activityIndicator.startAnimating()
+        cell.photoView.downloadImage(urlString: photo.src.original) { (error) in
+            if error == error {
+                print("Error")
+            }
+            cell.activityIndicator.stopAnimating()
+            cell.activityIndicator.alpha = 0
+        }
         return cell
     }
     

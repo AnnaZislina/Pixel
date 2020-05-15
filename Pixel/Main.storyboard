@@ -47,19 +47,28 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="DKK-R0-4FZ">
+                                                    <rect key="frame" x="197" y="159" width="20" height="20"/>
+                                                    <color key="color" red="0.43642151355743408" green="0.90563440322875977" blue="0.5656777024269104" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </activityIndicatorView>
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstItem="E7F-w6-sci" firstAttribute="centerX" secondItem="bUx-N5-rbt" secondAttribute="centerX" id="7eh-5R-5Zb"/>
+                                                <constraint firstItem="E7F-w6-sci" firstAttribute="top" secondItem="DKK-R0-4FZ" secondAttribute="bottom" constant="157" id="LN2-OZ-0PP"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="DKK-R0-4FZ" secondAttribute="trailing" constant="177" id="aN0-4G-Lwe"/>
                                                 <constraint firstItem="bUx-N5-rbt" firstAttribute="leading" secondItem="U5s-Eo-mef" secondAttribute="leading" constant="10" id="b68-QU-n2v"/>
+                                                <constraint firstItem="DKK-R0-4FZ" firstAttribute="leading" secondItem="U5s-Eo-mef" secondAttribute="leadingMargin" constant="177" id="evV-7z-vOC"/>
                                                 <constraint firstItem="E7F-w6-sci" firstAttribute="top" secondItem="bUx-N5-rbt" secondAttribute="bottom" constant="8" id="fFF-Fy-7r0"/>
                                                 <constraint firstAttribute="trailing" secondItem="E7F-w6-sci" secondAttribute="trailing" constant="20" id="gMw-Qm-Z6V"/>
                                                 <constraint firstItem="bUx-N5-rbt" firstAttribute="top" secondItem="U5s-Eo-mef" secondAttribute="top" constant="11" id="j7f-dd-W4k"/>
                                                 <constraint firstAttribute="trailing" secondItem="bUx-N5-rbt" secondAttribute="trailing" constant="10" id="jg5-2E-EDd"/>
                                                 <constraint firstAttribute="bottom" secondItem="bUx-N5-rbt" secondAttribute="bottom" constant="40" id="sH2-5z-66X"/>
+                                                <constraint firstItem="DKK-R0-4FZ" firstAttribute="top" secondItem="U5s-Eo-mef" secondAttribute="topMargin" constant="148" id="tll-WA-yhq"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="activityIndicator" destination="DKK-R0-4FZ" id="eZ6-lC-FLk"/>
                                             <outlet property="photoView" destination="bUx-N5-rbt" id="FbO-5Z-Ffz"/>
                                             <outlet property="photographerLabel" destination="E7F-w6-sci" id="irk-p3-C4N"/>
                                         </connections>
@@ -316,21 +325,29 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="url" value="https://www.pexels.com"/>
                                 </userDefinedRuntimeAttributes>
                             </label>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="dSL-aN-TMe">
+                                <rect key="frame" x="197" y="438" width="20" height="20"/>
+                                <color key="color" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="0.79834574460983276" green="0.94858461618423462" blue="0.8364453911781311" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="Mki-UT-cRk" firstAttribute="leading" secondItem="JtI-ke-pKq" secondAttribute="leading" constant="94" id="00e-zs-APL"/>
                             <constraint firstItem="JtI-ke-pKq" firstAttribute="trailing" secondItem="Mki-UT-cRk" secondAttribute="trailing" constant="93" id="2B4-Sm-9up"/>
                             <constraint firstItem="HyW-Df-mb7" firstAttribute="top" secondItem="D9K-Ol-3n5" secondAttribute="bottom" constant="8" id="6j3-C2-eDw"/>
+                            <constraint firstItem="D9K-Ol-3n5" firstAttribute="top" secondItem="dSL-aN-TMe" secondAttribute="bottom" constant="71" id="9tj-H3-omf"/>
                             <constraint firstItem="D9K-Ol-3n5" firstAttribute="centerX" secondItem="Mki-UT-cRk" secondAttribute="centerX" id="L2M-Ng-cfa"/>
                             <constraint firstItem="D9K-Ol-3n5" firstAttribute="leading" secondItem="HyW-Df-mb7" secondAttribute="leading" id="MAc-Q6-Vjf"/>
+                            <constraint firstItem="JtI-ke-pKq" firstAttribute="trailing" secondItem="dSL-aN-TMe" secondAttribute="trailing" constant="197" id="TTR-ns-CJD"/>
                             <constraint firstItem="Mki-UT-cRk" firstAttribute="top" secondItem="HyW-Df-mb7" secondAttribute="bottom" constant="101" id="Z30-P0-jHC"/>
                             <constraint firstItem="Mki-UT-cRk" firstAttribute="bottom" secondItem="JtI-ke-pKq" secondAttribute="bottom" id="a3V-Dl-DF8"/>
+                            <constraint firstItem="dSL-aN-TMe" firstAttribute="leading" secondItem="JtI-ke-pKq" secondAttribute="leading" constant="197" id="t53-ur-Mzh"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="JtI-ke-pKq"/>
                     </view>
                     <navigationItem key="navigationItem" id="ecL-TP-SKx"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="dSL-aN-TMe" id="CDO-8H-dej"/>
                         <outlet property="discoverPhotosButton" destination="D9K-Ol-3n5" id="gOg-S0-IKN"/>
                         <outlet property="linkToPexels" destination="Mki-UT-cRk" id="9gu-6u-NDF"/>
                         <outlet property="toMyAlbumButton" destination="HyW-Df-mb7" id="uMS-0X-6W1"/>

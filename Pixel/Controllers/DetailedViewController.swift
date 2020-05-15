@@ -21,10 +21,21 @@ class DetailedViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        detailedSizeLabel.text = "Original size: \(photo.width) x \(photo.height)"
-        detailedImageView.downloadImage(urlString: photo.src.original)
-        
+        downloadImage()
     }
+    
+    func downloadImage() {
+        
+        activityIndicator.startAnimating()
+        detailedSizeLabel.text = "Original size: \(photo.width) x \(photo.height)"
+        detailedImageView.downloadImage(urlString: photo.src.original) { (error) in
+            if error == error {
+                print("Error")
+            }
+            self.activityIndicator.stopAnimating()
+        }
+    }
+    
 
     @objc func image(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
        

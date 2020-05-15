@@ -10,19 +10,24 @@ import UIKit
 import TinyConstraints
 import FirebaseStorage
 import FirebaseFirestore
+import FirebaseAuth
+import Firebase
 
 class WelcomeViewController: UIViewController {
 
     @IBOutlet weak var discoverPhotosButton: RoundButton!
     @IBOutlet weak var toMyAlbumButton: RoundButton!
     @IBOutlet weak var linkToPexels: LinkLabel!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
+    let db = Firestore.firestore()
     
     let profileImageViewWidth: CGFloat = 200
     
     lazy var profileImageView: UIImageView = {
         
         let imageView = UIImageView()
-        imageView.image =  #imageLiteral(resourceName: "DefaultProfileImage").withRenderingMode(.alwaysOriginal)
+        imageView.image = #imageLiteral(resourceName: "DefaultProfileImage").withRenderingMode(.alwaysOriginal)
         imageView.contentMode = .scaleAspectFill
         imageView.layer.cornerRadius = profileImageViewWidth / 2
         imageView.layer.masksToBounds = true
@@ -43,12 +48,29 @@ class WelcomeViewController: UIViewController {
         showSourceTypeAlert()
     }
     
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        activityIndicator.alpha = 0
+        
         addViews()
         constrainViews()
-        loadProfileImage()
+        
+        let userRef = db.collection("Users").document(Constants.UserData.email)
+
+        userRef.getDocument { (document, error) in
+            if let document = document, document.exists {
+                let userDict = document.data()!
+                if userDict["profilePicture"] as? Bool == true {
+                    self.loadProfileImage()
+                }
+            } else {
+                print("Document does not exist")
+            }
+        }
     }
     
     func addViews() {
@@ -76,9 +98,8 @@ class WelcomeViewController: UIViewController {
     
     func loadProfileImage() {
         
-        let photoReference = Storage.storage().reference().child(Constants.Keys.photosFolder).child(Constants.Keys.profileImageName)
-        
-        photoReference.getData(maxSize: 1 * 1024 * 1024) { data, error in
+        let photoReference = Storage.storage().reference().child("Profile_Pictures").child(Constants.UserData.email + ".jpg")
+        photoReference.getData(maxSize: 1 * 512 * 512) { data, error in
             
             if error != nil {
                 self.presentAlert(title: "Error", message: "Something went wrong")
@@ -90,21 +111,48 @@ class WelcomeViewController: UIViewController {
     }
     
     func uploadPhotoToFirebase() {
+        
+        activityIndicator.alpha = 1
+        activityIndicator.startAnimating()
     
-        guard let image = profileImageView.image, let data = image.jpegData(compressionQuality: 1.0)
+        guard let image = profileImageView.image, let data = image.jpegData(compressionQuality: 0.5)
             else {
             presentAlert(title: "Error", message: "Something went wrong")
             return
         }
         
-        let photoReference = Storage.storage().reference().child(Constants.Keys.photosFolder).child(Constants.Keys.profileImageName)
-
+        let photoReference = Storage.storage().reference().child("Profile_Pictures").child(Constants.UserData.email + ".jpg")
+        
         photoReference.putData(data, metadata: nil) { (metadata, err) in
             if let err = err {
                 self.presentAlert(title: "Error", message: err.localizedDescription)
                 return
             }
+            self.activityIndicator.stopAnimating()
+            self.activityIndicator.alpha = 0
             self.presentAlert(title: "Saved!", message: "Profile image saved successfully")
+            
+            let userRef = self.db.collection("Users").document(Constants.UserData.email)
+            
+            userRef.updateData([
+                "profilePicture": true
+            ]) { err in
+                if let err = err {
+                    print("Error updating document: \(err)")
+                } else {
+                    print("Document successfully updated")
+                }
+            }
+            
+//            photoReference.downloadURL{ (url, error) in
+//                guard let profileUrl = url
+//                    else {
+//                        print("Error loading URL!")
+//                        return
+//                }
+//                print(profileUrl)
+//            }
+            
         }
     }
 

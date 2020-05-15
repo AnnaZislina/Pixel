@@ -89,39 +89,39 @@ extension MyAlbumTableViewController: UITableViewDelegate, UITableViewDataSource
         
         cell.myImageView.image = UIImage(data: images[indexPath.row].imageData!)
         
-//        func loadAlbumImages() {
-//
-//            let photoReference = Storage.storage().reference().child(Constants.Keys.photosFolder).child(Constants.Keys.profileImageName)
-//
-//            photoReference.getData(maxSize: 1 * 1024 * 1024) { data, error in
-//
-//                if error != nil {
-//                    self.presentAlert(title: "Error", message: "Something went wrong")
-//                } else {
-//                    let image = UIImage(data: data!)
-//                    cell.myImageView.image = image
-//                }
-//            }
-//        }
-//
-//        func uploadToFirebase() {
-//
-//            guard let image = cell.myImageView.image, let data = image.jpegData(compressionQuality: 1.0)
-//             else {
-//                presentAlert(title: "Error", message: "Something went wrong")
-//                return
-//            }
-//
-//            let photoReference = Storage.storage().reference().child(Constants.Keys.photosFolder).child(Constants.Keys.profileImageName)
-//
-//                photoReference.putData(data, metadata: nil) { (metadata, err) in
-//                    if let err = err {
-//                        self.presentAlert(title: "Error", message: err.localizedDescription)
-//                        return
-//                    }
-//                    self.presentAlert(title: "Saved!", message: "Profile image saved successfully")
-//            }
-//        }
+        func loadAlbumImages() {
+
+            let photoReference = Storage.storage().reference().child(Constants.Keys.photosFolder).child(Constants.Keys.profileImageName)
+
+            photoReference.getData(maxSize: 1 * 1024 * 1024) { data, error in
+
+                if error != nil {
+                    self.presentAlert(title: "Error", message: "Something went wrong")
+                } else {
+                    let image = UIImage(data: data!)
+                    cell.myImageView.image = image
+                }
+            }
+        }
+
+        func uploadToFirebase() {
+
+            guard let image = cell.myImageView.image, let data = image.jpegData(compressionQuality: 1.0)
+             else {
+                presentAlert(title: "Error", message: "Something went wrong")
+                return
+            }
+
+            let photoReference = Storage.storage().reference().child(Constants.Keys.photosFolder).child(Constants.Keys.profileImageName)
+
+                photoReference.putData(data, metadata: nil) { (metadata, err) in
+                    if let err = err {
+                        self.presentAlert(title: "Error", message: err.localizedDescription)
+                        return
+                    }
+                    self.presentAlert(title: "Saved!", message: "Profile image saved successfully")
+            }
+        }
         return cell
     }
 
@@ -153,8 +153,6 @@ extension MyAlbumTableViewController: UINavigationControllerDelegate, UIImagePic
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
-        
-        
         if let selectedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             let image = AlbumImage(imageData: selectedImage.pngData()!)
             // Add selected image to album
@@ -164,6 +162,7 @@ extension MyAlbumTableViewController: UINavigationControllerDelegate, UIImagePic
             myAlbumTableView.reloadData()
             dismiss(animated: true, completion: nil)
             self.presentAlert(title: "Added!", message: "Image successfully added to album")
+            
         }
     }
     

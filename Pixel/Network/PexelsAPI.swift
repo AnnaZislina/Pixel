@@ -22,7 +22,7 @@ class PexelsAPI {
         var stringValue: String {
             switch self {
             case .search(let query):
-               return Endpoints.baseURL + "/search" +  "?query=\(query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "")&per_page=15&page=1"
+               return Endpoints.baseURL + "/search" +  "?query=\(query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "")&per_page=50&page=1"
             }
         }
         

@@ -20,7 +20,7 @@ class LoginViewController: UIViewController {
     
         override func viewDidLoad() {
         super.viewDidLoad()
-            activityIndicator.isHidden = true
+        activityIndicator.isHidden = true
         setUpElements()
     }
     
@@ -36,6 +36,14 @@ class LoginViewController: UIViewController {
         return passwordTest.evaluate(with: password)
     }
     
+    func transitionToWelcomeVC() {
+        
+        let welcomeVC = storyboard?.instantiateViewController(identifier: Constants.Storyboard.welcomeVC) as? WelcomeViewController
+        
+        view.window?.rootViewController = welcomeVC
+        view.window?.makeKeyAndVisible()
+    }
+    
     func validatefields() -> String? {
     
         //Check are all fields are filled in
@@ -46,7 +54,7 @@ class LoginViewController: UIViewController {
         let cleanedPassword = passwordTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
         
         if isPasswordValid(cleanedPassword) == false {
-            return "Please make sure your password is at least 8 characters, contains a letter, a special character and a number."
+            return "Wrong password."
         }
         return nil
     }
@@ -84,11 +92,10 @@ class LoginViewController: UIViewController {
                     self.errorLabel.alpha = 1
                 }
                 else {
-                
-                let welcomeVC = self.storyboard?.instantiateViewController(identifier: Constants.Storyboard.welcomeVC) as? WelcomeViewController
-                
-                self.view.window?.rootViewController = welcomeVC
-                self.view.window?.makeKeyAndVisible()
+                                           
+                    let currentUser = Auth.auth().currentUser
+                    Constants.UserData.email = currentUser!.email!
+                    self.transitionToWelcomeVC()
                 
                 }
             }

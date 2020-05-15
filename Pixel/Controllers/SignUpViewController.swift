@@ -32,7 +32,8 @@ class SignUpViewController: UIViewController {
         errorLabel.alpha = 0
     }
     
-    func isPasswordValid(_ password : String) -> Bool {
+    // Validate that the password match the criteria
+    func isPasswordValid(_ password: String) -> Bool {
         
         let passwordTest = NSPredicate(format: "SELF MATCHES %@", "^(?=.*[a-z])(?=.*[$@$#!%*?&])[A-Za-z\\d$@$#!%*?&]{8,}")
         return passwordTest.evaluate(with: password)
@@ -101,12 +102,15 @@ class SignUpViewController: UIViewController {
                     //User was created successfully, now store the first and the last names
                     let db = Firestore.firestore()
                     
-                    db.collection("users").addDocument(data: ["firstName":firstName, "lastName":lastName, "uid":result!.user.uid]) { (error) in
-                        
+                    db.collection("Users").document(email).setData(["firstName":firstName, "lastName":lastName, "email":email, "profilePicture": false, "uid":result!.user.uid])
+                    { (error) in
                         if error != nil {
                             self.showError("Error saving user data")
                         }
                     }
+                    
+                    Constants.UserData.email = email
+                    
                     self.transitionToWelcomeVC()
                 }
             }
