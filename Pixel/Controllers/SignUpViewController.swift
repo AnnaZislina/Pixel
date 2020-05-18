@@ -22,14 +22,17 @@ class SignUpViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         setUpElements()
     }
     
     func setUpElements() {
-        
-        //Hide the error label
         errorLabel.alpha = 0
+        activityIndicator.alpha = 0
+        
+        let backgroundImage = UIImageView(frame: UIScreen.main.bounds)
+        backgroundImage.image = UIImage(named: "white")
+        backgroundImage.contentMode = UIView.ContentMode.scaleAspectFill
+        self.view.insertSubview(backgroundImage, at: 0)
     }
     
     // Validate that the password match the criteria
@@ -38,9 +41,7 @@ class SignUpViewController: UIViewController {
         let passwordTest = NSPredicate(format: "SELF MATCHES %@", "^(?=.*[a-z])(?=.*[$@$#!%*?&])[A-Za-z\\d$@$#!%*?&]{8,}")
         return passwordTest.evaluate(with: password)
     }
-    
-    
-    
+
     //Check the fields and validate that the data is correct. If everything is correct, this method returns nil. Otherwise, it returns the error message
     func validateTheFields() -> String? {
         
@@ -75,6 +76,7 @@ class SignUpViewController: UIViewController {
     
     @IBAction func signUpButtonPressed(_ sender: Any) {
         
+        activityIndicator.alpha = 1
         activityIndicator.startAnimating()
         
         //Validate the fields
@@ -101,16 +103,13 @@ class SignUpViewController: UIViewController {
                 else {
                     //User was created successfully, now store the first and the last names
                     let db = Firestore.firestore()
-                    
-                    db.collection("Users").document(email).setData(["firstName":firstName, "lastName":lastName, "email":email, "profilePicture": false, "uid":result!.user.uid])
+                    db.collection("Users").document(email).setData(["firstName":firstName, "lastName":lastName, "email":email, "profilePicture":false, "favorites":[], "uid":result!.user.uid])
                     { (error) in
                         if error != nil {
                             self.showError("Error saving user data")
                         }
                     }
-                    
-                    Constants.UserData.email = email
-                    
+                    UserData.email = email
                     self.transitionToWelcomeVC()
                 }
             }

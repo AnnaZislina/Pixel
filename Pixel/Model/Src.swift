@@ -9,6 +9,7 @@
 import Foundation
 
 class Src: Codable {
+    let large: String
     let large2x: String
     let original: String
 }

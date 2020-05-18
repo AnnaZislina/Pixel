@@ -19,13 +19,13 @@ class WelcomeViewController: UIViewController {
     @IBOutlet weak var toMyAlbumButton: RoundButton!
     @IBOutlet weak var linkToPexels: LinkLabel!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var welcomeLabel: UILabel!
     
     let db = Firestore.firestore()
     
-    let profileImageViewWidth: CGFloat = 200
+    let profileImageViewWidth: CGFloat = 250
     
     lazy var profileImageView: UIImageView = {
-        
         let imageView = UIImageView()
         imageView.image = #imageLiteral(resourceName: "DefaultProfileImage").withRenderingMode(.alwaysOriginal)
         imageView.contentMode = .scaleAspectFill
@@ -35,7 +35,6 @@ class WelcomeViewController: UIViewController {
     }()
     
     lazy var profileImageButton: UIButton = {
-       
         var button = UIButton(type: .system)
         button.backgroundColor = .clear
         button.layer.cornerRadius = profileImageViewWidth / 2
@@ -47,23 +46,18 @@ class WelcomeViewController: UIViewController {
     @objc fileprivate func profileImageButtonTapped() {
         showSourceTypeAlert()
     }
-    
-    
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        activityIndicator.alpha = 0
         
         addViews()
         constrainViews()
         
-        let userRef = db.collection("Users").document(Constants.UserData.email)
-
+        let userRef = db.collection("Users").document(UserData.email)
         userRef.getDocument { (document, error) in
             if let document = document, document.exists {
                 let userDict = document.data()!
+                self.welcomeLabel.text = ("Hello, \(userDict["firstName"]!)!")
                 if userDict["profilePicture"] as? Bool == true {
                     self.loadProfileImage()
                 }
@@ -71,6 +65,7 @@ class WelcomeViewController: UIViewController {
                 print("Document does not exist")
             }
         }
+        
     }
     
     func addViews() {
@@ -81,7 +76,7 @@ class WelcomeViewController: UIViewController {
     
     func constrainViews() {
         
-        profileImageView.topToSuperview(offset: 36, usingSafeArea: true)
+        profileImageView.topToSuperview(offset: 50, usingSafeArea: true)
         profileImageView.centerXToSuperview()
         profileImageView.width(profileImageViewWidth)
         profileImageView.height(profileImageViewWidth)
@@ -98,7 +93,9 @@ class WelcomeViewController: UIViewController {
     
     func loadProfileImage() {
         
-        let photoReference = Storage.storage().reference().child("Profile_Pictures").child(Constants.UserData.email + ".jpg")
+        activityIndicator.alpha = 1
+        activityIndicator.startAnimating()
+        let photoReference = Storage.storage().reference().child("Profile_Pictures").child(UserData.email + ".jpg")
         photoReference.getData(maxSize: 1 * 512 * 512) { data, error in
             
             if error != nil {
@@ -106,6 +103,8 @@ class WelcomeViewController: UIViewController {
             } else {
                 let image = UIImage(data: data!)
                 self.profileImageView.image = image
+                self.activityIndicator.alpha = 0
+                self.activityIndicator.stopAnimating()
             }
         }
     }
@@ -114,45 +113,39 @@ class WelcomeViewController: UIViewController {
         
         activityIndicator.alpha = 1
         activityIndicator.startAnimating()
-    
+        discoverPhotosButton.isUserInteractionEnabled = false
+        toMyAlbumButton.isUserInteractionEnabled = false
+        discoverPhotosButton.alpha = 0.5
+        toMyAlbumButton.alpha = 0.5
+        
         guard let image = profileImageView.image, let data = image.jpegData(compressionQuality: 0.5)
             else {
             presentAlert(title: "Error", message: "Something went wrong")
             return
         }
         
-        let photoReference = Storage.storage().reference().child("Profile_Pictures").child(Constants.UserData.email + ".jpg")
-        
+        let photoReference = Storage.storage().reference().child("Profile_Pictures").child(UserData.email + ".jpg")
         photoReference.putData(data, metadata: nil) { (metadata, err) in
             if let err = err {
                 self.presentAlert(title: "Error", message: err.localizedDescription)
                 return
             }
+            self.presentAlert(title: "Saved!", message: "Profile image saved successfully")
+            self.discoverPhotosButton.isUserInteractionEnabled = true
+            self.toMyAlbumButton.isUserInteractionEnabled = true
             self.activityIndicator.stopAnimating()
             self.activityIndicator.alpha = 0
-            self.presentAlert(title: "Saved!", message: "Profile image saved successfully")
+            self.discoverPhotosButton.alpha = 1
+            self.toMyAlbumButton.alpha = 1
             
-            let userRef = self.db.collection("Users").document(Constants.UserData.email)
-            
-            userRef.updateData([
-                "profilePicture": true
-            ]) { err in
+            let userRef = self.db.collection("Users").document(UserData.email)
+            userRef.updateData(["profilePicture": true]) { err in
                 if let err = err {
                     print("Error updating document: \(err)")
                 } else {
                     print("Document successfully updated")
                 }
             }
-            
-//            photoReference.downloadURL{ (url, error) in
-//                guard let profileUrl = url
-//                    else {
-//                        print("Error loading URL!")
-//                        return
-//                }
-//                print(profileUrl)
-//            }
-            
         }
     }
 

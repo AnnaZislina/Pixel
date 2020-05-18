@@ -1,5 +1,5 @@
 //
-//  MyImageTableViewCell.swift
+//  FavoritesTableViewCell.swift
 //  Pixel
 //
 //  Created by Anna Zislina on 16/04/2020.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MyImageTableViewCell: UITableViewCell {
+class FavoritesTableViewCell: UITableViewCell {
 
     @IBOutlet weak var myImageView: UIImageView!
     

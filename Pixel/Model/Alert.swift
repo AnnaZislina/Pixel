@@ -11,6 +11,7 @@ import UIKit
 
 class Alert {
     
+    //MARK: Show Alert func
     static func showAlert(style: UIAlertController.Style, title: String?, message: String?, actions: [UIAlertAction] = [UIAlertAction(title: "Ok", style: .cancel, handler: nil)], completion: (() -> Swift.Void)? = nil) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: style)
         for action in actions {
@@ -28,19 +29,19 @@ class Alert {
 
 extension UIApplication {
     
-    class func getTopMostViewController(base: UIViewController? = UIApplication.shared.keyWindow?.rootViewController) -> UIViewController? {
-        if let nav = base as? UINavigationController {
-            return getTopMostViewController(base: nav.visibleViewController)
+    class func getTopMostViewController(controller: UIViewController? = UIApplication.shared.keyWindow?.rootViewController) -> UIViewController? {
+        if let navigationController = controller as? UINavigationController {
+            return getTopMostViewController(controller: navigationController.visibleViewController)
         }
-        if let tab = base as? UITabBarController {
-            if let selected = tab.selectedViewController {
-                return getTopMostViewController(base: selected)
+        if let tabController = controller as? UITabBarController {
+            if let selected = tabController.selectedViewController {
+                return getTopMostViewController(controller: selected)
             }
         }
-        if let presented = base?.presentedViewController {
-            return getTopMostViewController(base: presented)
+        if let presented = controller?.presentedViewController {
+            return getTopMostViewController(controller: presented)
         }
-        return base
+        return controller
     }
 }
 

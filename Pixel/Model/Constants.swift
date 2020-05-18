@@ -9,21 +9,8 @@
 import Foundation
 
 struct Constants {
-    
+   
     struct Storyboard {
        static let welcomeVC = "WelcomeVC"
-    }
-    
-    struct Keys {
-        static let photosFolder = "photosFolder"
-        static let photosCollection = "photosCollection"
-        static let uid = "uid"
-        static let photoURL = "photoURL"
-        static let photoPosts = "photoPosts"
-        static let profileImageName = "profilePicture_"
-    }
-    
-    struct UserData {
-        static var email = ""
     }
 }

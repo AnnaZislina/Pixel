@@ -8,10 +8,10 @@
 
 import Foundation
 import UIKit
-import FirebaseStorage
 
 extension UIImageView {
     
+    //MARK: Download Image func
     public func downloadImage(urlString: String, completion: ((_ errorMessage: String?) -> Void)?) {
         
         let task = URLSession.shared.dataTask(with: NSURL(string: urlString)! as URL, completionHandler: { (data, response, error) -> Void in

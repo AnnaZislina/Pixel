@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseFirestore
 
 class DetailedViewController: UIViewController {
     
@@ -14,13 +15,13 @@ class DetailedViewController: UIViewController {
     @IBOutlet weak var detailedSizeLabel: UILabel!
     @IBOutlet weak var saveImageButton: RoundButton!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-
+    @IBOutlet weak var addToFavoritesButton: UIButton!
     
     var photo: Photo!
-  
+    let db = Firestore.firestore()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         downloadImage()
     }
     
@@ -30,7 +31,7 @@ class DetailedViewController: UIViewController {
         detailedSizeLabel.text = "Original size: \(photo.width) x \(photo.height)"
         detailedImageView.downloadImage(urlString: photo.src.original) { (error) in
             if error == error {
-                print("Error")
+               // print("")
             }
             self.activityIndicator.stopAnimating()
         }
@@ -44,6 +45,9 @@ class DetailedViewController: UIViewController {
             presentAlert(title: "Error", message: error.localizedDescription)
         } else {
             presentAlert(title: "Saved!", message: "Image saved successfully")
+            saveImageButton.alpha = 1
+            detailedImageView.alpha = 1
+            saveImageButton.isUserInteractionEnabled = true
         }
     }
     
@@ -59,13 +63,29 @@ class DetailedViewController: UIViewController {
         
         guard let image = detailedImageView.image else { return }
         activityIndicator.startAnimating()
+        saveImageButton.isUserInteractionEnabled = false
+        detailedImageView.alpha = 0.5
+        saveImageButton.alpha = 0.5
         UIImageWriteToSavedPhotosAlbum(image, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
     }
     
+    func addToFavorites() {
+        let dbRef = db.collection("Users").document(UserData.email)
+        dbRef.updateData(["favorites": FieldValue.arrayUnion([photo.src.large])]) { error in
+            if let error = error {
+                self.presentAlert(title: "Error", message: error.localizedDescription)
+            } else {
+                self.presentAlert(title: "Added!", message: "Image successfully added to Favorites")
+            }
+        }
+    }
     
     @IBAction func saveButtonTapped(_ sender: Any) {
-       
         savePhoto()
+    }
+    
+    @IBAction func addToFavoritesButtonTapped(_ sender: Any) {
+        addToFavorites()
     }
     
 }

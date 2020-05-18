@@ -101,12 +101,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J33-Ec-k2D" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="247.82608695652175" y="118.52678571428571"/>
+            <point key="canvasLocation" x="714" y="119"/>
         </scene>
-        <!--My Album Table View Controller-->
+        <!--Favorites Table View Controller-->
         <scene sceneID="fJV-Rb-nlJ">
             <objects>
-                <viewController id="69U-VT-YCZ" customClass="MyAlbumTableViewController" customModule="Pixel" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="69U-VT-YCZ" customClass="FavoritesTableViewController" customModule="Pixel" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="EmQ-5p-Sio">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -116,7 +116,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="myAlbumCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="myAlbumCell" rowHeight="394" id="ywb-1r-L9v" customClass="MyImageTableViewCell" customModule="Pixel" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="myAlbumCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="favoritesCell" rowHeight="394" id="ywb-1r-L9v" customClass="FavoritesTableViewCell" customModule="Pixel" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="394"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ywb-1r-L9v" id="Ate-Z6-naa">
@@ -125,6 +125,10 @@
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="R8Y-6U-eEz">
                                                     <rect key="frame" x="0.0" y="11" width="414" height="383"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="414" id="CDE-kL-lWT"/>
+                                                        <constraint firstAttribute="height" constant="383" id="Txs-hQ-ANF"/>
+                                                    </constraints>
                                                 </imageView>
                                             </subviews>
                                             <constraints>
@@ -148,14 +152,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
-                                    <navigationItem title="My Album" id="HnA-BR-uLM">
-                                        <barButtonItem key="rightBarButtonItem" systemItem="camera" id="x0A-MA-xpK">
-                                            <color key="tintColor" red="0.43642151355743408" green="0.90563440322875977" blue="0.5656777024269104" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <connections>
-                                                <action selector="cameraButtonTapped:" destination="69U-VT-YCZ" id="CFX-qh-pZT"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
+                                    <navigationItem title="Favorites" id="HnA-BR-uLM"/>
                                 </items>
                             </navigationBar>
                         </subviews>
@@ -164,13 +161,12 @@
                     </view>
                     <navigationItem key="navigationItem" id="TbW-U8-Iv7"/>
                     <connections>
-                        <outlet property="cameraButton" destination="x0A-MA-xpK" id="mw5-Jd-26m"/>
-                        <outlet property="myAlbumTableView" destination="Rgf-yt-JAt" id="elH-ev-LWW"/>
+                        <outlet property="favoritesTableView" destination="Rgf-yt-JAt" id="1Qa-4L-Fj6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IPp-jE-iQT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="247.82608695652175" y="787.5"/>
+            <point key="canvasLocation" x="713" y="788"/>
         </scene>
         <!--Detailed View Controller-->
         <scene sceneID="cCh-H0-gMe">
@@ -224,6 +220,16 @@
                                     <action selector="saveButtonTapped:" destination="AaC-2E-FbC" eventType="touchUpInside" id="0it-6c-Sh3"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Ly-Sg-NLl">
+                                <rect key="frame" x="361" y="608" width="33" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <rect key="contentStretch" x="0.20000000000000001" y="0.0" width="1" height="1"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Add" image="heart"/>
+                                <connections>
+                                    <action selector="addToFavoritesButtonTapped:" destination="AaC-2E-FbC" eventType="touchUpInside" id="E6B-Aj-pnd"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -246,6 +252,7 @@
                     <navigationItem key="navigationItem" id="kTf-sE-qbc"/>
                     <connections>
                         <outlet property="activityIndicator" destination="Gjm-jc-XAx" id="8jn-5z-txX"/>
+                        <outlet property="addToFavoritesButton" destination="5Ly-Sg-NLl" id="MkC-YX-9pl"/>
                         <outlet property="detailedImageView" destination="d4s-Ht-vTZ" id="rot-dw-EMz"/>
                         <outlet property="detailedSizeLabel" destination="STe-pa-Qe9" id="W64-Ra-brv"/>
                         <outlet property="saveImageButton" destination="6Q2-iz-1Xq" id="KfT-TL-AQh"/>
@@ -253,7 +260,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rtr-lW-zle" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1061" y="119"/>
+            <point key="canvasLocation" x="1434.7826086956522" y="118.52678571428571"/>
         </scene>
         <!--Welcome View Controller-->
         <scene sceneID="3uX-8L-igD">
@@ -298,7 +305,7 @@
                                     <constraint firstAttribute="width" constant="190" id="z6D-eo-QrP"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="20"/>
-                                <state key="normal" title="To My Album">
+                                <state key="normal" title="Favorites">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
@@ -325,10 +332,32 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="url" value="https://www.pexels.com"/>
                                 </userDefinedRuntimeAttributes>
                             </label>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="dSL-aN-TMe">
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="dSL-aN-TMe">
                                 <rect key="frame" x="197" y="438" width="20" height="20"/>
                                 <color key="color" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </activityIndicatorView>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YbN-sB-g7N">
+                                <rect key="frame" x="0.0" y="36" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <color key="barTintColor" red="0.79834574460983276" green="0.94858461618423462" blue="0.8364453911781311" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <items>
+                                    <navigationItem id="6VJ-Ss-bKf">
+                                        <barButtonItem key="leftBarButtonItem" image="chevron.left" catalog="system" id="iiY-pL-AoQ">
+                                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <connections>
+                                                <segue destination="lOo-pc-ynH" kind="show" id="GiZ-JZ-VFy"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xek-uC-Icf">
+                                <rect key="frame" x="20" y="366" width="374" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.79834574460983276" green="0.94858461618423462" blue="0.8364453911781311" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -345,28 +374,31 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="JtI-ke-pKq"/>
                     </view>
-                    <navigationItem key="navigationItem" id="ecL-TP-SKx"/>
+                    <navigationItem key="navigationItem" id="Fud-qq-1ds">
+                        <barButtonItem key="leftBarButtonItem" title="Item" id="meA-Ry-xNZ"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="activityIndicator" destination="dSL-aN-TMe" id="CDO-8H-dej"/>
                         <outlet property="discoverPhotosButton" destination="D9K-Ol-3n5" id="gOg-S0-IKN"/>
                         <outlet property="linkToPexels" destination="Mki-UT-cRk" id="9gu-6u-NDF"/>
                         <outlet property="toMyAlbumButton" destination="HyW-Df-mb7" id="uMS-0X-6W1"/>
+                        <outlet property="welcomeLabel" destination="xek-uC-Icf" id="iee-wG-KHX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ode-Sl-GmB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-642.02898550724638" y="345.53571428571428"/>
+            <point key="canvasLocation" x="-416" y="346"/>
         </scene>
         <!--Enter View Controller-->
         <scene sceneID="Wx1-sD-ASU">
             <objects>
                 <viewController id="lOo-pc-ynH" customClass="EnterViewController" customModule="Pixel" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ODU-dP-lCQ">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="a94-Jh-TLa">
-                                <rect key="frame" x="40" y="702" width="334" height="120"/>
+                                <rect key="frame" x="40" y="648" width="334" height="120"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XwN-eM-obh" customClass="RoundButton" customModule="Pixel" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="334" height="50"/>
@@ -375,7 +407,7 @@
                                             <constraint firstAttribute="height" constant="50" id="gcO-dg-sQt"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="18"/>
-                                        <state key="normal" title="Sign Up">
+                                        <state key="normal" title="Login">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
@@ -390,7 +422,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <segue destination="59A-CR-cPI" kind="show" id="HXq-qM-Vdw"/>
+                                            <segue destination="WjN-Dm-Qra" kind="show" id="oDM-2O-szg"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lC1-bP-EAP" customClass="RoundButton" customModule="Pixel" customModuleProvider="target">
@@ -400,7 +432,7 @@
                                             <constraint firstAttribute="height" constant="50" id="AG8-DT-KwJ"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="17"/>
-                                        <state key="normal" title="Login">
+                                        <state key="normal" title="Sign Up">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
@@ -415,13 +447,13 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <segue destination="WjN-Dm-Qra" kind="show" id="mE3-8G-SYQ"/>
+                                            <segue destination="59A-CR-cPI" kind="show" id="KPC-ee-B5e"/>
                                         </connections>
                                     </button>
                                 </subviews>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PIXEL" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zux-Fo-1DR">
-                                <rect key="frame" x="136" y="205" width="143" height="88"/>
+                                <rect key="frame" x="136" y="117" width="143" height="122"/>
                                 <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="55"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -454,21 +486,21 @@
             <objects>
                 <viewController id="WjN-Dm-Qra" customClass="LoginViewController" customModule="Pixel" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1nA-BO-6lq">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Evd-y5-1Rr">
-                                <rect key="frame" x="40" y="128" width="334" height="237.5"/>
+                                <rect key="frame" x="40" y="40" width="334" height="237.5"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pA9-Z3-D4t">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="pA9-Z3-D4t">
                                         <rect key="frame" x="0.0" y="0.0" width="334" height="50"/>
                                         <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="18"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" textContentType="email"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8dB-Aw-MXV">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="8dB-Aw-MXV">
                                         <rect key="frame" x="0.0" y="70" width="334" height="50"/>
                                         <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="18"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="78A-1Z-Y70" customClass="RoundButton" customModule="Pixel" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="140" width="334" height="50"/>
@@ -507,8 +539,8 @@
                                     <constraint firstItem="78A-1Z-Y70" firstAttribute="height" secondItem="pA9-Z3-D4t" secondAttribute="height" id="cyN-sB-NeA"/>
                                 </constraints>
                             </stackView>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="k2i-N7-sbq">
-                                <rect key="frame" x="197" y="438" width="20" height="20"/>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="k2i-N7-sbq">
+                                <rect key="frame" x="197" y="350" width="20" height="20"/>
                                 <color key="color" red="0.43642151355743408" green="0.90563440322875977" blue="0.5656777024269104" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </activityIndicatorView>
                         </subviews>
@@ -536,38 +568,38 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ryh-rX-0rm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1603" y="788"/>
+            <point key="canvasLocation" x="-1454" y="119"/>
         </scene>
         <!--Sign Up View Controller-->
         <scene sceneID="MZa-zt-aPt">
             <objects>
                 <viewController id="59A-CR-cPI" customClass="SignUpViewController" customModule="Pixel" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="RFj-r4-xnH">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="bLV-DJ-bjP">
-                                <rect key="frame" x="40" y="128" width="334" height="377.5"/>
+                                <rect key="frame" x="40" y="40" width="334" height="411.5"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="First Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qKM-pV-sZE">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="First Name" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="qKM-pV-sZE">
                                         <rect key="frame" x="0.0" y="0.0" width="334" height="50"/>
                                         <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="18"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" textContentType="name"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Last Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MjR-vQ-a1V">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Last Name" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="MjR-vQ-a1V">
                                         <rect key="frame" x="0.0" y="70" width="334" height="50"/>
                                         <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="18"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" textContentType="family-name"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="myt-p9-UEy">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="myt-p9-UEy">
                                         <rect key="frame" x="0.0" y="140" width="334" height="50"/>
                                         <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="18"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" textContentType="email"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TkQ-Si-yQV">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="TkQ-Si-yQV">
                                         <rect key="frame" x="0.0" y="210" width="334" height="50"/>
                                         <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="18"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BSp-Vf-loH" customClass="RoundButton" customModule="Pixel" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="280" width="334" height="50"/>
@@ -595,7 +627,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6bj-gj-gT3">
-                                        <rect key="frame" x="0.0" y="350" width="334" height="27.5"/>
+                                        <rect key="frame" x="0.0" y="350" width="334" height="61.5"/>
                                         <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="17"/>
                                         <color key="textColor" red="0.98781245949999996" green="0.57343226670000003" blue="0.48631531" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <nil key="highlightedColor"/>
@@ -608,8 +640,8 @@
                                     <constraint firstItem="myt-p9-UEy" firstAttribute="height" secondItem="qKM-pV-sZE" secondAttribute="height" id="oqe-3Y-Jhn"/>
                                 </constraints>
                             </stackView>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="Lae-w3-5sf">
-                                <rect key="frame" x="197" y="567" width="20" height="23"/>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="Lae-w3-5sf">
+                                <rect key="frame" x="197" y="513" width="20" height="23"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="23" id="bGq-6q-qQI"/>
                                 </constraints>
@@ -641,7 +673,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ccm-Wh-6pO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1604.3478260869567" y="118.52678571428571"/>
+            <point key="canvasLocation" x="-1455" y="788"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="C3y-08-Hg5">
@@ -662,4 +694,12 @@
             <point key="canvasLocation" x="-3210" y="346"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="GiZ-JZ-VFy"/>
+    </inferredMetricsTieBreakers>
+    <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+    <resources>
+        <image name="chevron.left" catalog="system" width="96" height="128"/>
+        <image name="heart" width="256" height="256"/>
+    </resources>
 </document>

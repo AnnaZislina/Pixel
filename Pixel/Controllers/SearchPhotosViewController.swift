@@ -15,7 +15,7 @@ class SearchPhotosViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
 
-        var searchController: UISearchController!
+    var searchController: UISearchController!
     var photos: [Photo] = []
     var selectedIndex = 0
     var currentSearchTask: URLSessionTask?
@@ -83,8 +83,8 @@ extension SearchPhotosViewController: UITableViewDelegate, UITableViewDataSource
         cell.photographerLabel?.text = ("Photographer: \(photo.photographer)")
         
         cell.activityIndicator.startAnimating()
-        cell.photoView.downloadImage(urlString: photo.src.original) { (error) in
-            if error == error {
+        cell.photoView.downloadImage(urlString: photo.src.large) { (error) in
+            if error != nil {
                 print("Error")
             }
             cell.activityIndicator.stopAnimating()
@@ -102,7 +102,6 @@ extension SearchPhotosViewController: UITableViewDelegate, UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        
         return 400
     }
 }

@@ -18,16 +18,20 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
-        override func viewDidLoad() {
+    override func viewDidLoad() {
         super.viewDidLoad()
-        activityIndicator.isHidden = true
         setUpElements()
     }
     
     func setUpElements() {
         
-        //Hide the error label
         errorLabel.alpha = 0
+        activityIndicator.alpha = 0
+        
+        let backgroundImage = UIImageView(frame: UIScreen.main.bounds)
+        backgroundImage.image = UIImage(named: "white")
+        backgroundImage.contentMode = UIView.ContentMode.scaleAspectFill
+        self.view.insertSubview(backgroundImage, at: 0)
     }
     
     func isPasswordValid(_ password : String) -> Bool {
@@ -39,7 +43,6 @@ class LoginViewController: UIViewController {
     func transitionToWelcomeVC() {
         
         let welcomeVC = storyboard?.instantiateViewController(identifier: Constants.Storyboard.welcomeVC) as? WelcomeViewController
-        
         view.window?.rootViewController = welcomeVC
         view.window?.makeKeyAndVisible()
     }
@@ -67,7 +70,8 @@ class LoginViewController: UIViewController {
     
     @IBAction func loginButtonPressed(_ sender: Any) {
         
-        activityIndicator.startAnimating()
+        self.activityIndicator.alpha = 1
+        self.activityIndicator.startAnimating()
         
         //Validate text fields
         let error = validatefields()
@@ -92,11 +96,9 @@ class LoginViewController: UIViewController {
                     self.errorLabel.alpha = 1
                 }
                 else {
-                                           
                     let currentUser = Auth.auth().currentUser
-                    Constants.UserData.email = currentUser!.email!
+                    UserData.email = currentUser!.email!
                     self.transitionToWelcomeVC()
-                
                 }
             }
         }
