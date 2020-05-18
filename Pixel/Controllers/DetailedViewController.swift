@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import FirebaseFirestore
+import Firebase
 
 class DetailedViewController: UIViewController {
     
@@ -37,6 +37,22 @@ class DetailedViewController: UIViewController {
         }
     }
     
+    func userInteractionAllowed() {
+        saveImageButton.alpha = 1
+        detailedImageView.alpha = 1
+        addToFavoritesButton.alpha = 1
+        saveImageButton.isUserInteractionEnabled = true
+        addToFavoritesButton.isUserInteractionEnabled = true
+    }
+    
+    func userInteractionForbidden() {
+        saveImageButton.isUserInteractionEnabled = false
+        addToFavoritesButton.isUserInteractionEnabled = false
+        detailedImageView.alpha = 0.5
+        saveImageButton.alpha = 0.5
+        addToFavoritesButton.alpha = 0.5
+    }
+    
 
     @objc func image(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
        
@@ -45,9 +61,7 @@ class DetailedViewController: UIViewController {
             presentAlert(title: "Error", message: error.localizedDescription)
         } else {
             presentAlert(title: "Saved!", message: "Image saved successfully")
-            saveImageButton.alpha = 1
-            detailedImageView.alpha = 1
-            saveImageButton.isUserInteractionEnabled = true
+            userInteractionAllowed()
         }
     }
     
@@ -60,22 +74,23 @@ class DetailedViewController: UIViewController {
     }
     
     func savePhoto() {
-        
         guard let image = detailedImageView.image else { return }
         activityIndicator.startAnimating()
-        saveImageButton.isUserInteractionEnabled = false
-        detailedImageView.alpha = 0.5
-        saveImageButton.alpha = 0.5
+        userInteractionForbidden()
         UIImageWriteToSavedPhotosAlbum(image, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
     }
     
     func addToFavorites() {
+        
+        activityIndicator.startAnimating()
+        userInteractionForbidden()
         let dbRef = db.collection("Users").document(UserData.email)
-        dbRef.updateData(["favorites": FieldValue.arrayUnion([photo.src.large])]) { error in
+        dbRef.updateData(["favorites":FieldValue.arrayUnion([photo.src.large])]) { error in
             if let error = error {
                 self.presentAlert(title: "Error", message: error.localizedDescription)
             } else {
                 self.presentAlert(title: "Added!", message: "Image successfully added to Favorites")
+                self.userInteractionAllowed()
             }
         }
     }

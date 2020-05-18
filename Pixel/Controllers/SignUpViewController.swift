@@ -7,8 +7,9 @@
 //
 
 import UIKit
-import FirebaseAuth
 import Firebase
+import FirebaseAuth
+
 
 class SignUpViewController: UIViewController {
 
@@ -29,6 +30,7 @@ class SignUpViewController: UIViewController {
         errorLabel.alpha = 0
         activityIndicator.alpha = 0
         
+        //Setup background image
         let backgroundImage = UIImageView(frame: UIScreen.main.bounds)
         backgroundImage.image = UIImage(named: "white")
         backgroundImage.contentMode = UIView.ContentMode.scaleAspectFill
@@ -47,7 +49,7 @@ class SignUpViewController: UIViewController {
         
         //Check that all fields are filled in
         if firstNameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" || lastNameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" || emailTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" || passwordTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" {
-            return "Please fill in all fields."
+            return "Please fill in all fields"
         }
         
         //Check if the password is secure
@@ -55,7 +57,7 @@ class SignUpViewController: UIViewController {
         
         if isPasswordValid(cleanedPassword) == false {
             //Password isn't secure enough
-            return "Please make sure your password is at least 8 characters, contains a letter, a special character and a number."
+            return "Please make sure your password is at least 8 characters, contains a letter, a special character and a number"
         }
         return nil
     }
@@ -75,7 +77,6 @@ class SignUpViewController: UIViewController {
     }
     
     @IBAction func signUpButtonPressed(_ sender: Any) {
-        
         activityIndicator.alpha = 1
         activityIndicator.startAnimating()
         
@@ -99,8 +100,7 @@ class SignUpViewController: UIViewController {
                 if error != nil {
                     //There was an error creating user
                     self.showError("Error creating user")
-                }
-                else {
+                } else {
                     //User was created successfully, now store the first and the last names
                     let db = Firestore.firestore()
                     db.collection("Users").document(email).setData(["firstName":firstName, "lastName":lastName, "email":email, "profilePicture":false, "favorites":[], "uid":result!.user.uid])

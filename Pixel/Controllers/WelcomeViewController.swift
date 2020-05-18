@@ -7,11 +7,9 @@
 //
 
 import UIKit
-import TinyConstraints
-import FirebaseStorage
-import FirebaseFirestore
-import FirebaseAuth
 import Firebase
+import FirebaseAuth
+import TinyConstraints
 
 class WelcomeViewController: UIViewController {
 
@@ -23,8 +21,8 @@ class WelcomeViewController: UIViewController {
     
     let db = Firestore.firestore()
     
+    //Setup image view
     let profileImageViewWidth: CGFloat = 250
-    
     lazy var profileImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = #imageLiteral(resourceName: "DefaultProfileImage").withRenderingMode(.alwaysOriginal)
@@ -34,6 +32,7 @@ class WelcomeViewController: UIViewController {
         return imageView
     }()
     
+    //Setup button within image view
     lazy var profileImageButton: UIButton = {
         var button = UIButton(type: .system)
         button.backgroundColor = .clear
@@ -69,18 +68,15 @@ class WelcomeViewController: UIViewController {
     }
     
     func addViews() {
-        
         view.addSubview(profileImageView)
         view.addSubview(profileImageButton)
     }
     
     func constrainViews() {
-        
         profileImageView.topToSuperview(offset: 50, usingSafeArea: true)
         profileImageView.centerXToSuperview()
         profileImageView.width(profileImageViewWidth)
         profileImageView.height(profileImageViewWidth)
-        
         profileImageButton.edges(to: profileImageView)
     }
     
@@ -92,12 +88,11 @@ class WelcomeViewController: UIViewController {
     }
     
     func loadProfileImage() {
-        
         activityIndicator.alpha = 1
         activityIndicator.startAnimating()
+        
         let photoReference = Storage.storage().reference().child("Profile_Pictures").child(UserData.email + ".jpg")
         photoReference.getData(maxSize: 1 * 512 * 512) { data, error in
-            
             if error != nil {
                 self.presentAlert(title: "Error", message: "Something went wrong")
             } else {
@@ -109,14 +104,29 @@ class WelcomeViewController: UIViewController {
         }
     }
     
-    func uploadPhotoToFirebase() {
-        
+    
+    func userInteractionForbidden() {
         activityIndicator.alpha = 1
         activityIndicator.startAnimating()
         discoverPhotosButton.isUserInteractionEnabled = false
         toMyAlbumButton.isUserInteractionEnabled = false
         discoverPhotosButton.alpha = 0.5
         toMyAlbumButton.alpha = 0.5
+    }
+    
+    func userInteractionAllowed() {
+        self.discoverPhotosButton.isUserInteractionEnabled = true
+        self.toMyAlbumButton.isUserInteractionEnabled = true
+        self.activityIndicator.stopAnimating()
+        self.activityIndicator.alpha = 0
+        self.discoverPhotosButton.alpha = 1
+        self.toMyAlbumButton.alpha = 1
+     
+    }
+    
+    func uploadPhotoToFirebase() {
+        
+        userInteractionForbidden()
         
         guard let image = profileImageView.image, let data = image.jpegData(compressionQuality: 0.5)
             else {
@@ -131,12 +141,7 @@ class WelcomeViewController: UIViewController {
                 return
             }
             self.presentAlert(title: "Saved!", message: "Profile image saved successfully")
-            self.discoverPhotosButton.isUserInteractionEnabled = true
-            self.toMyAlbumButton.isUserInteractionEnabled = true
-            self.activityIndicator.stopAnimating()
-            self.activityIndicator.alpha = 0
-            self.discoverPhotosButton.alpha = 1
-            self.toMyAlbumButton.alpha = 1
+            self.userInteractionAllowed()
             
             let userRef = self.db.collection("Users").document(UserData.email)
             userRef.updateData(["profilePicture": true]) { err in

@@ -16,6 +16,7 @@ class EnterViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //Setup background image
         let backgroundImage = UIImageView(frame: UIScreen.main.bounds)
         backgroundImage.image = UIImage(named: "white")
         backgroundImage.contentMode = UIView.ContentMode.scaleAspectFill

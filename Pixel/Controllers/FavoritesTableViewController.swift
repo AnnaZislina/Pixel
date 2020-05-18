@@ -8,9 +8,6 @@
 
 import UIKit
 import Firebase
-import FirebaseCore
-import FirebaseStorage
-import FirebaseFirestore
 
 class FavoritesTableViewController: UIViewController {
     
@@ -52,7 +49,7 @@ class FavoritesTableViewController: UIViewController {
     
     func removeFromFavorites(_ imageToRemove: String) {
         let dbRef = db.collection("Users").document(UserData.email)
-        dbRef.updateData(["favorites": FieldValue.arrayRemove([imageToRemove])]) { err in
+        dbRef.updateData(["favorites":FieldValue.arrayRemove([imageToRemove])]) { err in
             if let err = err {
                 print("Error updating document: \(err)")
             } else {
@@ -70,12 +67,10 @@ class FavoritesTableViewController: UIViewController {
     
     // MARK: - Table view data source
 
-    // Override to support conditional editing of the table view.
      func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
     
-    // Override to support editing the table view.
      func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         
         if editingStyle == .delete {

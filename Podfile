@@ -12,7 +12,6 @@ target 'Pixel' do
   pod 'Firebase/Storage'
   pod 'Firebase/Analytics'
   pod 'Firebase/Core'
-  pod 'Kingfisher'
   pod 'Firebase/Database'
   pod 'TinyConstraints'
 
