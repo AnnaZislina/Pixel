@@ -1,11 +1,47 @@
 # Pixel
 
-Pixel is a simple application that allows users to search, view and download high quality photos, photographed by professionals.
+Pixel is a simple application that allows authenticated users to search for high quality photos, add them to the "Favorites" album and also save on a device.
+
 The app is based on [Pexels](https://www.pexels.com) API.
 
 ## How to Use
 
-Type your query in the search bar. This will show a list of photos in a table view. Tap on a photo to open it in a detailed view. To save the photo to your device, tap the "Save" button.
+### User Authentication
+
+#### Sign Up
+1. Click on a "Sign Up" button.
+2. Provide first and last name, email and password (password shuld contain at least 8 characters, including letters, numbers and special characters).
+3. Click on a "Sign Up" button below.
+
+#### Login
+1. Click on a "Login" button
+2. Provide email and password, with whitch you sign up before.
+3. Click on a "Login" button below.
+
+After authentication user can setup profile image.
+
+### Setup profile image
+1. Click on a plus in a circle view and choose the image from your photo library.
+2. To change a profile image click on a circle view and choose another picture.
+
+### Searching photos
+1. Click on a "Discovery Photos" button.
+2. In a search panel type a query. This will show up photos in a table view.
+3. Click on a photo to see it in a detailed view.
+
+### Save a photo on a device
+1. Click on a photo you would like to save.
+2. When a photo opens in a detailed view, click on a "Save" button.
+
+### Add a photo to "Favorites"
+1. Click on a photo you would like to add to the "Favorites" album.
+2.Click on a "heart" button.
+
+### Delete a photo from "Favorites"
+To delete a photo swipe it left and click red "Delete" button.
+
+
+
 
 ## Clone
 
