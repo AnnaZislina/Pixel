@@ -59,7 +59,6 @@ class FavoritesTableViewController: UIViewController {
     }
             
     func presentAlert(title: String, message: String) {
-        
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default))
         present(alert, animated: true)
@@ -72,7 +71,6 @@ class FavoritesTableViewController: UIViewController {
     }
     
      func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        
         if editingStyle == .delete {
             let imageToRemove = UserData.favorites[indexPath.row]
             self.removeFromFavorites(imageToRemove)
@@ -94,7 +92,6 @@ extension FavoritesTableViewController: UITableViewDelegate, UITableViewDataSour
     }
 
      func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let cell: FavoritesTableViewCell = self.favoritesTableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath) as! FavoritesTableViewCell
         let image = UserData.favorites[indexPath.row]
         cell.myImageView.downloadImage(urlString: image) { (error) in
@@ -103,7 +100,7 @@ extension FavoritesTableViewController: UITableViewDelegate, UITableViewDataSour
                 }
             }
         return cell
-        }
+    }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 400

@@ -55,8 +55,8 @@ class DetailedViewController: UIViewController {
     
 
     @objc func image(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
-       
         activityIndicator.stopAnimating()
+        
         if let error = error {
             presentAlert(title: "Error", message: error.localizedDescription)
         } else {
@@ -66,8 +66,8 @@ class DetailedViewController: UIViewController {
     }
     
     func presentAlert(title: String, message: String) {
-        
         activityIndicator.stopAnimating()
+        
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default))
         present(alert, animated: true)
@@ -81,9 +81,9 @@ class DetailedViewController: UIViewController {
     }
     
     func addToFavorites() {
-        
         activityIndicator.startAnimating()
         userInteractionForbidden()
+        
         let dbRef = db.collection("Users").document(UserData.email)
         dbRef.updateData(["favorites":FieldValue.arrayUnion([photo.src.large])]) { error in
             if let error = error {

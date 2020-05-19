@@ -21,6 +21,7 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpElements()
