@@ -4,16 +4,37 @@ Pixel is a simple application that allows authenticated users to search for high
 
 The app is based on [Pexels](https://www.pexels.com) API.
 
+## Installation
+
+All the code required to get started
+
+### Clone
+
+Clone this repo to your local machine using `https://github.com/AnnaZislina/Pixel`
+
+### Setup
+
+Pixel is built using Swift and [Firebase](https://firebase.google.com). Dependencies are managed using [CocoaPods](https://cocoapods.org).
+
+Run `pod install` in the `Source` directory, open `.xcworkspace` file, build and run the project.
+
+```
+$ pod install
+$ open your-project.xcworkspace
+```
+
 ## How to Use
 
 ### User Authentication
 
 #### Sign Up
+
 1. Click on a "Sign Up" button.
 2. Provide first and last name, email and password (password shuld contain at least 8 characters, including letters, numbers and special characters).
 3. Click on a "Sign Up" button below.
 
 #### Login
+
 1. Click on a "Login" button
 2. Provide email and password, with whitch you sign up before.
 3. Click on a "Login" button below.
@@ -21,31 +42,29 @@ The app is based on [Pexels](https://www.pexels.com) API.
 After authentication user can setup profile image.
 
 ### Setup profile image
+
 1. Click on a plus in a circle view and choose the image from your photo library.
 2. To change a profile image click on a circle view and choose another picture.
 
 ### Searching photos
+
 1. Click on a "Discovery Photos" button.
 2. In a search panel type a query. This will show up photos in a table view.
 3. Click on a photo to see it in a detailed view.
 
 ### Save a photo on a device
+
 1. Click on a photo you would like to save.
 2. When a photo opens in a detailed view, click on a "Save" button.
 
 ### Add a photo to "Favorites"
+
 1. Click on a photo you would like to add to the "Favorites" album.
 2. Click on a "heart" button.
 
 ### Delete a photo from "Favorites"
 To delete a photo swipe it left and click red "Delete" button.
 
-
-
-
-## Clone
-
-- Clone this repo to your local machine using `https://github.com/AnnaZislina/Pixel`
 
 #### MIT License
 
