@@ -35,7 +35,7 @@ After authentication user can setup profile image.
 
 ### Add a photo to "Favorites"
 1. Click on a photo you would like to add to the "Favorites" album.
-2.Click on a "heart" button.
+2. Click on a "heart" button.
 
 ### Delete a photo from "Favorites"
 To delete a photo swipe it left and click red "Delete" button.
