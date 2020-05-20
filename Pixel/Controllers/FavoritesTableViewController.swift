@@ -41,6 +41,12 @@ class FavoritesTableViewController: UIViewController {
         }
     }
     
+    func presentAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        present(alert, animated: true)
+    }
+    
     func loadFavorites(_ images: [String]) {
         for element in images {
             print(element)
@@ -49,21 +55,16 @@ class FavoritesTableViewController: UIViewController {
     
     func removeFromFavorites(_ imageToRemove: String) {
         let dbRef = db.collection("Users").document(UserData.email)
-        dbRef.updateData(["favorites":FieldValue.arrayRemove([imageToRemove])]) { err in
-            if let err = err {
-                print("Error updating document: \(err)")
+        dbRef.updateData(["favorites":FieldValue.arrayRemove([imageToRemove])]) { error in
+            if let error = error {
+                self.presentAlert(title: "Error", message: "Error removing image. Please try again later")
+                print("Error updating document: \(error)")
             } else {
                 print("Document successfully updated")
             }
         }
     }
-            
-    func presentAlert(title: String, message: String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default))
-        present(alert, animated: true)
-    }
-    
+
     // MARK: - Table view data source
 
      func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -102,8 +103,8 @@ extension FavoritesTableViewController: UITableViewDelegate, UITableViewDataSour
         return cell
     }
 
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 400
-    }
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        return 400
+//    }
 }
 

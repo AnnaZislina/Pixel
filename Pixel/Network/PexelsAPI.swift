@@ -33,13 +33,15 @@ class PexelsAPI {
         }
     }
     
+    
     //MARK: GET Request
-   class func getRequest<ResponseType: Decodable>(url: URL, responseType: ResponseType.Type, completion: @escaping (ResponseType?, Error?) -> Void) -> URLSessionTask {
+class func getRequest<ResponseType: Decodable>(url: URL, responseType: ResponseType.Type, completion: @escaping (ResponseType?, Error?) -> Void) -> URLSessionTask {
     
     var request = URLRequest(url: url)
-    request.addValue(API_KEY, forHTTPHeaderField: "Authorization")
+        request.addValue(API_KEY, forHTTPHeaderField: "Authorization")
     let task = URLSession.shared.dataTask(with: request) { data, response, error in
-        guard let data = data else {
+        guard let data = data, error == nil
+            else {
             DispatchQueue.main.async {
                 completion(nil, error)
             }
@@ -56,15 +58,15 @@ class PexelsAPI {
             }
         }
         task.resume()
-        return task //wasted network calls
+        return task
     }
     
 
     //MARK: Search func
-   class func search(query: String, completion: @escaping ([Photo], Error?) -> Void) -> URLSessionTask {
+class func search(query: String, completion: @escaping ([Photo], Error?) -> Void) -> URLSessionTask {
     
     let task = getRequest(url: Endpoints.search(query).url, responseType: PexelsResponse.self) { (response, error) in
-        if let response = response {
+        if let response = response, error == nil {
             completion(response.photos, nil)
         } else {
             completion([], error)

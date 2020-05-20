@@ -135,18 +135,18 @@ class WelcomeViewController: UIViewController {
         }
         
         let photoReference = Storage.storage().reference().child("Profile_Pictures").child(UserData.email + ".jpg")
-        photoReference.putData(data, metadata: nil) { (metadata, err) in
-            if let err = err {
-                self.presentAlert(title: "Error", message: err.localizedDescription)
+        photoReference.putData(data, metadata: nil) { (metadata, error) in
+            if error != nil {
+                self.presentAlert(title: "Error", message: "There was an error. Please try again later.")
                 return
             }
             self.presentAlert(title: "Saved!", message: "Profile image saved successfully")
             self.userInteractionAllowed()
             
             let userRef = self.db.collection("Users").document(UserData.email)
-            userRef.updateData(["profilePicture": true]) { err in
-                if let err = err {
-                    print("Error updating document: \(err)")
+            userRef.updateData(["profilePicture": true]) { error in
+                if let error = error {
+                    print("Error updating document: \(error)")
                 } else {
                     print("Document successfully updated")
                 }

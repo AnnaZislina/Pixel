@@ -9,9 +9,5 @@
 import Foundation
 
 struct PexelsResponse: Codable {
-    let page: Int
-    let per_page: Int
-    let total_results: Int
     let photos: [Photo]
-    
 }

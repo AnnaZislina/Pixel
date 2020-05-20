@@ -30,8 +30,8 @@ class DetailedViewController: UIViewController {
         activityIndicator.startAnimating()
         detailedSizeLabel.text = "Original size: \(photo.width) x \(photo.height)"
         detailedImageView.downloadImage(urlString: photo.src.original) { (error) in
-            if error == error {
-               // print("")
+            if error != nil {
+                self.presentAlert(title: "Error", message: "There was an error downloading image. Please try again later.")
             }
             self.activityIndicator.stopAnimating()
         }
@@ -57,8 +57,8 @@ class DetailedViewController: UIViewController {
     @objc func image(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
         activityIndicator.stopAnimating()
         
-        if let error = error {
-            presentAlert(title: "Error", message: error.localizedDescription)
+        if error != nil {
+            presentAlert(title: "Error", message: "There was an error. Please try again later.")
         } else {
             presentAlert(title: "Saved!", message: "Image saved successfully")
             userInteractionAllowed()
@@ -86,8 +86,8 @@ class DetailedViewController: UIViewController {
         
         let dbRef = db.collection("Users").document(UserData.email)
         dbRef.updateData(["favorites":FieldValue.arrayUnion([photo.src.large])]) { error in
-            if let error = error {
-                self.presentAlert(title: "Error", message: error.localizedDescription)
+            if error != nil {
+                self.presentAlert(title: "Error", message: "There was an error. Please try again later.")
             } else {
                 self.presentAlert(title: "Added!", message: "Image successfully added to Favorites")
                 self.userInteractionAllowed()

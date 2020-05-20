@@ -47,18 +47,29 @@ class SearchPhotosViewController: UIViewController {
             detailVC.photo = photos[selectedIndex]
         }
     }
+    
+    func presentAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        present(alert, animated: true)
+    }
 }
 
 //MARK: Search Bar Delegate
 extension SearchPhotosViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        
-        currentSearchTask?.cancel() //wasted network calls
         currentSearchTask = PexelsAPI.search(query: searchText, completion: { (photos, error) in
-            self.photos = photos
-            DispatchQueue.main.async {
+            if error != nil {
+                    DispatchQueue.main.async {
+                    self.presentAlert(title: "Error", message: "There was an error. Please try again later.")
+                        print(error ?? "search error")
+                }
+            } else {
+                self.photos = photos
+                DispatchQueue.main.async {
                 self.tableView.reloadData()
+                }
             }
         })
     }
@@ -72,7 +83,6 @@ extension SearchPhotosViewController: UITableViewDelegate, UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         return photos.count
     }
     
@@ -94,14 +104,9 @@ extension SearchPhotosViewController: UITableViewDelegate, UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
         selectedIndex = indexPath.row
         performSegue(withIdentifier: "showDetail", sender: nil)
         tableView.deselectRow(at: indexPath, animated: true)
-        
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 400
-    }
 }
