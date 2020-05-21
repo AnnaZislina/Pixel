@@ -25,15 +25,29 @@ class DetailedViewController: UIViewController {
         downloadImage()
     }
     
+    func transitionToWelcomeVC() {
+         let welcomeVC = storyboard?.instantiateViewController(identifier: Constants.Storyboard.welcomeVC) as? WelcomeViewController
+         view.window?.rootViewController = welcomeVC
+         view.window?.makeKeyAndVisible()
+     }
+    
     func downloadImage() {
-        
         activityIndicator.startAnimating()
+        userInteractionForbidden()
         detailedSizeLabel.text = "Original size: \(photo.width) x \(photo.height)"
         detailedImageView.downloadImage(urlString: photo.src.original) { (error) in
             if error != nil {
-                self.presentAlert(title: "Error", message: "There was an error downloading image. Please try again later.")
+                DispatchQueue.main.async {
+                    self.presentAlert(title: "Error", message: "There was an error downloading image. Please try again later.")
+                    DispatchQueue.main.asyncAfter(wallDeadline: .now() + 3.0) {
+                        self.transitionToWelcomeVC()
+                    }
+                }
             }
-            self.activityIndicator.stopAnimating()
+            DispatchQueue.main.async {
+                self.activityIndicator.stopAnimating()
+                self.userInteractionAllowed()
+            }
         }
     }
     
@@ -56,7 +70,6 @@ class DetailedViewController: UIViewController {
 
     @objc func image(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
         activityIndicator.stopAnimating()
-        
         if error != nil {
             presentAlert(title: "Error", message: "There was an error. Please try again later.")
         } else {
@@ -67,7 +80,6 @@ class DetailedViewController: UIViewController {
     
     func presentAlert(title: String, message: String) {
         activityIndicator.stopAnimating()
-        
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default))
         present(alert, animated: true)
@@ -81,16 +93,10 @@ class DetailedViewController: UIViewController {
     }
     
     func addToFavorites() {
-        activityIndicator.startAnimating()
-        userInteractionForbidden()
-        
         let dbRef = db.collection("Users").document(UserData.email)
         dbRef.updateData(["favorites":FieldValue.arrayUnion([photo.src.large])]) { error in
             if error != nil {
                 self.presentAlert(title: "Error", message: "There was an error. Please try again later.")
-            } else {
-                self.presentAlert(title: "Added!", message: "Image successfully added to Favorites")
-                self.userInteractionAllowed()
             }
         }
     }
@@ -100,6 +106,7 @@ class DetailedViewController: UIViewController {
     }
     
     @IBAction func addToFavoritesButtonTapped(_ sender: Any) {
+        presentAlert(title: "Added!", message: "Image successfully added to Favorites")
         addToFavorites()
     }
     

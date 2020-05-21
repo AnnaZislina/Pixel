@@ -9,12 +9,15 @@
 import Foundation
 import UIKit
 
+
 class SearchPhotosViewController: UIViewController {
     
     let cellReuseIdentifier = "cell"
     
     @IBOutlet weak var tableView: UITableView!
-
+    
+    var activityView: UIActivityIndicatorView?
+    
     var searchController: UISearchController!
     var photos: [Photo] = []
     var selectedIndex = 0
@@ -29,19 +32,17 @@ class SearchPhotosViewController: UIViewController {
         tableView.estimatedRowHeight = 400
         tableView.keyboardDismissMode = .onDrag
         tableView.separatorStyle = .none
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
+
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
         if segue.identifier == "showDetail" {
             let detailVC = segue.destination as! DetailedViewController
             detailVC.photo = photos[selectedIndex]
@@ -53,22 +54,49 @@ class SearchPhotosViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "OK", style: .default))
         present(alert, animated: true)
     }
+    
+    func showActivityIndicator() {
+        activityView = UIActivityIndicatorView(style: .medium)
+        activityView?.center = self.view.center
+        self.view.addSubview(activityView!)
+        activityView?.startAnimating()
+    }
+
+    func hideActivityIndicator(){
+        if (activityView != nil){
+            activityView?.stopAnimating()
+        }
+    }
+    
+    func transitionToWelcomeVC() {
+         let welcomeVC = storyboard?.instantiateViewController(identifier: Constants.Storyboard.welcomeVC) as? WelcomeViewController
+         view.window?.rootViewController = welcomeVC
+         view.window?.makeKeyAndVisible()
+     }
 }
 
 //MARK: Search Bar Delegate
 extension SearchPhotosViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        currentSearchTask = PexelsAPI.search(query: searchText, completion: { (photos, error) in
+        
+        
+        currentSearchTask = PexelsAPI.search(query: searchText, completion: {
+            (photos, error) in
             if error != nil {
-                    DispatchQueue.main.async {
-                    self.presentAlert(title: "Error", message: "There was an error. Please try again later.")
-                        print(error ?? "search error")
+                self.showActivityIndicator()
+                DispatchQueue.main.async {
+                    self.presentAlert(title: "Error", message: "You're offline. Please check your connection.")
+                    self.hideActivityIndicator()
+                    DispatchQueue.main.asyncAfter(wallDeadline: .now() + 4.0) {
+                        self.transitionToWelcomeVC()
+                    } 
                 }
             } else {
+                self.hideActivityIndicator()
                 self.photos = photos
                 DispatchQueue.main.async {
-                self.tableView.reloadData()
+                    self.tableView.reloadData()
                 }
             }
         })
@@ -87,12 +115,11 @@ extension SearchPhotosViewController: UITableViewDelegate, UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let cell: TableViewCell = self.tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath) as! TableViewCell
+        cell.activityIndicator.alpha = 1
+        cell.activityIndicator.startAnimating()
         let photo = photos[indexPath.row]
         cell.photographerLabel?.text = ("Photographer: \(photo.photographer)")
-        
-        cell.activityIndicator.startAnimating()
         cell.photoView.downloadImage(urlString: photo.src.large) { (error) in
             if error != nil {
                 print("Error")
@@ -101,6 +128,7 @@ extension SearchPhotosViewController: UITableViewDelegate, UITableViewDataSource
             cell.activityIndicator.alpha = 0
         }
         return cell
+        
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

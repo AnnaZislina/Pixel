@@ -66,10 +66,14 @@ class func getRequest<ResponseType: Decodable>(url: URL, responseType: ResponseT
 class func search(query: String, completion: @escaping ([Photo], Error?) -> Void) -> URLSessionTask {
     
     let task = getRequest(url: Endpoints.search(query).url, responseType: PexelsResponse.self) { (response, error) in
-        if let response = response, error == nil {
+        if let response = response {
             completion(response.photos, nil)
-        } else {
-            completion([], error)
+        }
+        else {
+            let errorDescription = error?.localizedDescription
+            if errorDescription!.contains("The request timed out") {
+                completion([], error)
+            }
         }
     }
     task.resume()

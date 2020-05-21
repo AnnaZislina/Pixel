@@ -26,6 +26,10 @@ class FavoritesTableViewController: UIViewController {
         
         let dbRef = db.collection("Users").document(UserData.email)
         dbRef.getDocument { (document, error) in
+            if error != nil {
+                self.presentAlert(title: "Error", message: "Check your internet connection")
+                self.transitionToWelcomeVC()
+            }
             if let document = document, document.exists {
                 let userDict = document.data()!
                 let favoriteImages = userDict["favorites"] as! [String]
@@ -39,6 +43,12 @@ class FavoritesTableViewController: UIViewController {
                 print("Document does not exist")
             }
         }
+    }
+    
+    func transitionToWelcomeVC() {
+        let welcomeVC = storyboard?.instantiateViewController(identifier: Constants.Storyboard.welcomeVC) as? WelcomeViewController
+        view.window?.rootViewController = welcomeVC
+        view.window?.makeKeyAndVisible()
     }
     
     func presentAlert(title: String, message: String) {
@@ -102,9 +112,5 @@ extension FavoritesTableViewController: UITableViewDelegate, UITableViewDataSour
             }
         return cell
     }
-
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return 400
-//    }
 }
 

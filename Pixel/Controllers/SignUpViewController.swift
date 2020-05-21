@@ -100,14 +100,14 @@ class SignUpViewController: UIViewController {
                 //Check for errors
                 if error != nil {
                     //There was an error creating user
-                    self.showError("Error creating user")
+                    self.showError(error!.localizedDescription)
                 } else {
                     //User was created successfully, now store the first and the last names
                     let db = Firestore.firestore()
                     db.collection("Users").document(email).setData(["firstName":firstName, "lastName":lastName, "email":email, "profilePicture":false, "favorites":[], "uid":result!.user.uid])
                     { (error) in
                         if error != nil {
-                            self.showError("Error saving user data")
+                            self.showError("Error adding user data. Please restart the app.")
                         }
                     }
                     UserData.email = email
