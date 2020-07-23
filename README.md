@@ -4,6 +4,13 @@ Pixel is a simple application that allows authenticated users to search for high
 
 The app is based on [Pexels](https://www.pexels.com) API.
 
+## Screenshots 
+
+<img src="images/Welcome%20screen.png" height="500">
+<img src="images/Search%20photos%20screen.png" height="500">
+<img src="images/Detailed%20view%20screen.png" height="500">
+<img src="images/Favorites%20screen.png" height="500">
+
 ## Installation
 
 All the code required to get started
