@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="M39-rD-T2b">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="M39-rD-T2b">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -221,11 +221,12 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Ly-Sg-NLl">
-                                <rect key="frame" x="361" y="608" width="33" height="33"/>
+                                <rect key="frame" x="373" y="608" width="21" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <rect key="contentStretch" x="0.20000000000000001" y="0.0" width="1" height="1"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <state key="normal" title="Add" image="heart"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                <color key="tintColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Add" image="suit.heart" catalog="system"/>
                                 <connections>
                                     <action selector="addToFavoritesButtonTapped:" destination="AaC-2E-FbC" eventType="touchUpInside" id="E6B-Aj-pnd"/>
                                 </connections>
@@ -402,7 +403,7 @@
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XwN-eM-obh" customClass="RoundButton" customModule="Pixel" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="334" height="50"/>
-                                        <color key="backgroundColor" red="0.79834574459999996" green="0.94858461620000001" blue="0.83644539120000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="gcO-dg-sQt"/>
                                         </constraints>
@@ -427,7 +428,7 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lC1-bP-EAP" customClass="RoundButton" customModule="Pixel" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="70" width="334" height="50"/>
-                                        <color key="backgroundColor" red="0.79834574459999996" green="0.94858461620000001" blue="0.83644539120000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="AG8-DT-KwJ"/>
                                         </constraints>
@@ -459,7 +460,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" red="0.79834574460983276" green="0.94858461618423462" blue="0.8364453911781311" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="zux-Fo-1DR" firstAttribute="top" secondItem="nKy-RO-3h3" secondAttribute="top" constant="117" id="Ejy-so-6PO"/>
                             <constraint firstItem="a94-Jh-TLa" firstAttribute="top" secondItem="zux-Fo-1DR" secondAttribute="bottom" constant="409" id="F54-Cb-nMG"/>
@@ -504,7 +505,7 @@
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="78A-1Z-Y70" customClass="RoundButton" customModule="Pixel" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="140" width="334" height="50"/>
-                                        <color key="backgroundColor" red="0.79834574459999996" green="0.94858461620000001" blue="0.83644539120000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="0ch-se-Qno"/>
                                         </constraints>
@@ -544,7 +545,7 @@
                                 <color key="color" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </activityIndicatorView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" red="0.79834574460983276" green="0.94858461618423462" blue="0.8364453911781311" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="w38-9L-1N4" firstAttribute="trailing" secondItem="Evd-y5-1Rr" secondAttribute="trailing" constant="40" id="HsU-79-uLr"/>
                             <constraint firstItem="Evd-y5-1Rr" firstAttribute="leading" secondItem="w38-9L-1N4" secondAttribute="leading" constant="40" id="W8Y-wy-dE3"/>
@@ -603,7 +604,7 @@
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BSp-Vf-loH" customClass="RoundButton" customModule="Pixel" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="280" width="334" height="50"/>
-                                        <color key="backgroundColor" red="0.79834574459999996" green="0.94858461620000001" blue="0.83644539120000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="VhN-KW-Dm3"/>
                                         </constraints>
@@ -648,7 +649,7 @@
                                 <color key="color" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </activityIndicatorView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" red="0.79834574460983276" green="0.94858461618423462" blue="0.8364453911781311" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="bLV-DJ-bjP" firstAttribute="top" secondItem="mvx-ro-TkA" secondAttribute="top" constant="40" id="6qO-Rt-4QY"/>
                             <constraint firstItem="mvx-ro-TkA" firstAttribute="trailing" secondItem="Lae-w3-5sf" secondAttribute="trailing" constant="197" id="7xF-BO-5AO"/>
@@ -700,6 +701,6 @@
     <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
     <resources>
         <image name="chevron.left" catalog="system" width="96" height="128"/>
-        <image name="heart" width="128" height="128"/>
+        <image name="suit.heart" catalog="system" width="128" height="109"/>
     </resources>
 </document>
