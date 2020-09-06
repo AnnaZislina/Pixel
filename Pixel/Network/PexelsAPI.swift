@@ -68,8 +68,7 @@ class func search(query: String, completion: @escaping ([Photo], Error?) -> Void
     let task = getRequest(url: Endpoints.search(query).url, responseType: PexelsResponse.self) { (response, error) in
         if let response = response {
             completion(response.photos, nil)
-        }
-        else {
+        } else {
             let errorDescription = error?.localizedDescription
             if errorDescription!.contains("The request timed out") {
                 completion([], error)

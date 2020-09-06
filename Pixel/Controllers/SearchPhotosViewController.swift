@@ -90,7 +90,7 @@ extension SearchPhotosViewController: UISearchBarDelegate {
                     self.hideActivityIndicator()
                     DispatchQueue.main.asyncAfter(wallDeadline: .now() + 4.0) {
                         self.transitionToWelcomeVC()
-                    } 
+                    }
                 }
             } else {
                 self.hideActivityIndicator()
